@@ -1,167 +1,167 @@
-,country,count
-0,United States,266599
-1,Argentina,2400
-2,Ghana,72
-3,Oman,4
-4,Angola,13
-5,Namibia,72
-6,Botswana,38
-7,Indonesia,107
-8,China,1053
-9,Gabon,15
-10,Kenya,23
-11,Algeria,225
-12,Burma,92
-13,Congo (Brazzaville),11
-14,Egypt,200
-15,India,781
-16,"Korea, South",122
-17,Iran,411
-18,Israel,26
-19,Cote D'Ivoire,23
-20,Morocco,119
-21,Malaysia,111
-22,Mozambique,30
-23,Pakistan,48
-24,Philippines,359
-25,Tanzania,65
-26,Mali,23
-27,Turkey,254
-28,Peru,3055
-29,Bolivia,1661
-30,Mexico,4763
-31,Canada,1551
-32,Costa Rica,452
-33,Russia,1394
-34,Brazil,2078
-35,Kazakhstan,284
-36,Germany,181
-37,Slovenia,11
-38,Austria,38
-39,France,481
-40,United Kingdom,103
-41,Spain,174
-42,Tunisia,67
-43,Zimbabwe,262
-44,South Africa,705
-45,Australia,1195
-46,Azerbaijan,12
-47,Sweden,106
-48,Norway,80
-49,Bulgaria,30
-50,Hungary,40
-51,Western Sahara,4
-52,Burkina Faso,15
-53,Uganda,27
-54,New Zealand,209
-55,Denmark,16
-56,Somalia,165
-57,Mauritania,11
-58,Niger,15
-59,Senegal,13
-60,Sierra Leone,24
-61,Togo,7
-62,Zambia,112
-63,Cyprus,13
-64,Iraq,49
-65,Japan,415
-66,Jordan,17
-67,Taiwan,39
-68,Thailand,253
-69,Guinea,30
-70,Congo (Kinshasa),112
-71,Mongolia,14
-72,Guatemala,191
-73,Poland,59
-74,Laos,244
-75,Italy,137
-76,Guyana,584
-77,Jamaica,357
-78,Venezuela,637
-79,Fiji,10
-80,Suriname,152
-81,Cameroon,10
-82,Solomon Islands,3
-83,Ireland,24
-84,Malawi,12
-85,Afghanistan,33
-86,Finland,84
-87,Sri Lanka,16
-88,Chile,4081
-89,Bosnia and Herzegovina,26
-90,Montenegro,7
-91,Libya,55
-92,Saudi Arabia,39
-93,Uzbekistan,60
-94,Greece,64
-95,Ecuador,591
-96,Serbia,41
-97,Ethiopia,40
-98,Slovakia,21
-99,Albania,45
-100,Czech Republic,33
-101,Romania,43
-102,Ukraine,109
-103,Macedonia,16
-104,Colombia,1016
-105,Cuba,450
-106,Burundi,9
-107,"Korea, North",15
-108,Syria,9
-109,Estonia,4
-110,Nauru,4
-111,Portugal,33
-112,Papua New Guinea,82
-113,Georgia,21
-114,Tajikistan,37
-115,Kyrgyzstan,40
-116,Armenia,22
-117,Madagascar,62
-118,Swaziland,11
-119,Honduras,262
-120,Haiti,68
-121,Dominican Republic,106
-122,Sudan,14
-123,Panama,287
-124,Belize,9
-125,El Salvador,39
-126,Nicaragua,66
-127,Uruguay,258
-128,Saint Kitts and Nevis,8
-129,Saint Vincent and the Grenadines,1
-130,Saint Lucia,10
-131,Dominica,2
-132,Antigua and Barbuda,6
-133,"Bahamas, the",6
-134,"Bahamas, The",1
-135,Netherlands,17
-136,Barbados,1
-137,Paraguay,48
-138,Cambodia,52
-139,Vietnam,33
-140,Lesotho,2
-141,Liberia,17
-142,Vanuatu,1
-143,Palau,1
-144,Antarctica,2
-145,Rwanda,4
-146,Croatia,8
-147,Turkmenistan,6
-148,Nigeria,14
-149,Belgium,22
-150,Belarus,4
-151,Qatar,1
-152,Benin,2
-153,Bangladesh,3
-154,Nepal,3
-155,Lebanon,1
-156,Switzerland,3
-157,Luxembourg,3
-158,United Arab Emirates,1
-159,Singapore,1
-160,Lithuania,1
-161,Trinidad and Tobago,1
-162,Bahrain,1
-163,"Gambia, the",1
-164,Iceland,1
-165,"Russia, Kazakhstan",1
+country,count
+United States,266599
+Argentina,2400
+Ghana,72
+Oman,4
+Angola,13
+Namibia,72
+Botswana,38
+Indonesia,107
+China,1053
+Gabon,15
+Kenya,23
+Algeria,225
+Burma,92
+Congo (Brazzaville),11
+Egypt,200
+India,781
+"Korea, South",122
+Iran,411
+Israel,26
+Cote D'Ivoire,23
+Morocco,119
+Malaysia,111
+Mozambique,30
+Pakistan,48
+Philippines,359
+Tanzania,65
+Mali,23
+Turkey,254
+Peru,3055
+Bolivia,1661
+Mexico,4763
+Canada,1551
+Costa Rica,452
+Russia,1394
+Brazil,2078
+Kazakhstan,284
+Germany,181
+Slovenia,11
+Austria,38
+France,481
+United Kingdom,103
+Spain,174
+Tunisia,67
+Zimbabwe,262
+South Africa,705
+Australia,1195
+Azerbaijan,12
+Sweden,106
+Norway,80
+Bulgaria,30
+Hungary,40
+Western Sahara,4
+Burkina Faso,15
+Uganda,27
+New Zealand,209
+Denmark,16
+Somalia,165
+Mauritania,11
+Niger,15
+Senegal,13
+Sierra Leone,24
+Togo,7
+Zambia,112
+Cyprus,13
+Iraq,49
+Japan,415
+Jordan,17
+Taiwan,39
+Thailand,253
+Guinea,30
+Congo (Kinshasa),112
+Mongolia,14
+Guatemala,191
+Poland,59
+Laos,244
+Italy,137
+Guyana,584
+Jamaica,357
+Venezuela,637
+Fiji,10
+Suriname,152
+Cameroon,10
+Solomon Islands,3
+Ireland,24
+Malawi,12
+Afghanistan,33
+Finland,84
+Sri Lanka,16
+Chile,4081
+Bosnia and Herzegovina,26
+Montenegro,7
+Libya,55
+Saudi Arabia,39
+Uzbekistan,60
+Greece,64
+Ecuador,591
+Serbia,41
+Ethiopia,40
+Slovakia,21
+Albania,45
+Czech Republic,33
+Romania,43
+Ukraine,109
+Macedonia,16
+Colombia,1016
+Cuba,450
+Burundi,9
+"Korea, North",15
+Syria,9
+Estonia,4
+Nauru,4
+Portugal,33
+Papua New Guinea,82
+Georgia,21
+Tajikistan,37
+Kyrgyzstan,40
+Armenia,22
+Madagascar,62
+Swaziland,11
+Honduras,262
+Haiti,68
+Dominican Republic,106
+Sudan,14
+Panama,287
+Belize,9
+El Salvador,39
+Nicaragua,66
+Uruguay,258
+Saint Kitts and Nevis,8
+Saint Vincent and the Grenadines,1
+Saint Lucia,10
+Dominica,2
+Antigua and Barbuda,6
+"Bahamas, the",6
+"Bahamas, The",1
+Netherlands,17
+Barbados,1
+Paraguay,48
+Cambodia,52
+Vietnam,33
+Lesotho,2
+Liberia,17
+Vanuatu,1
+Palau,1
+Antarctica,2
+Rwanda,4
+Croatia,8
+Turkmenistan,6
+Nigeria,14
+Belgium,22
+Belarus,4
+Qatar,1
+Benin,2
+Bangladesh,3
+Nepal,3
+Lebanon,1
+Switzerland,3
+Luxembourg,3
+United Arab Emirates,1
+Singapore,1
+Lithuania,1
+Trinidad and Tobago,1
+Bahrain,1
+"Gambia, the",1
+Iceland,1
+"Russia, Kazakhstan",1
