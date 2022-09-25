@@ -1,0 +1,162 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "background": "#7fcdff",
+  "padding": 5,
+  "width": 800,
+  "height": 400,
+  "title": {"text": "Mineral ores in each country", "frame": "group"},
+  "data": [
+    {
+      "name": "source_1",
+      "url": "https://raw.githubusercontent.com/CalistaRSaw/3179-Data-Visualisation-2/Homework-week-9/Minerals%20data/merge%20count%20area.csv",
+      "format": {"type": "csv", "delimiter": ","}
+    },
+    {
+      "name": "source_2",
+      "url": "https://raw.githubusercontent.com/CalistaRSaw/3179-Data-Visualisation-2/main/Homework%20Week%209/js/ne_110m.json",
+      "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
+    },
+    {
+      "name": "source_0",
+      "url": "https://raw.githubusercontent.com/CalistaRSaw/3179-Data-Visualisation-2/main/Homework%20Week%209/js/ne_110m.json",
+      "format": {
+        "type": "topojson",
+        "feature": "ne_110m_admin_0_countries",
+        "parse": {}
+      },
+      "transform": [
+        {
+          "type": "formula",
+          "expr": "datum[\"properties\"] && datum[\"properties\"][\"NAME\"]",
+          "as": "properties.NAME"
+        }
+      ]
+    },
+    {
+      "name": "data_0",
+      "source": "source_0",
+      "transform": [
+        {
+          "type": "lookup",
+          "from": "source_1",
+          "key": "country",
+          "fields": ["properties.NAME"],
+          "values": ["count"]
+        },
+        {
+          "type": "formula",
+          "expr": "datum.count + 0.1",
+          "as": "Mineral ore per 100000sq. km"
+        },
+        {
+          "type": "filter",
+          "expr": "isValid(datum[\"Mineral ore per 100000sq. km\"]) && isFinite(+datum[\"Mineral ore per 100000sq. km\"])"
+        }
+      ]
+    },
+    {
+      "name": "data_1",
+      "source": "source_0",
+      "transform": [
+        {
+          "type": "lookup",
+          "from": "source_1",
+          "key": "country",
+          "fields": ["properties.NAME"],
+          "values": ["count", "Area"]
+        },
+        {
+          "type": "formula",
+          "expr": "datum.count/datum.Area*100000",
+          "as": "Mineral ore per 100000sq. km"
+        },
+        {
+          "type": "filter",
+          "expr": "isValid(datum[\"Mineral ore per 100000sq. km\"]) && isFinite(+datum[\"Mineral ore per 100000sq. km\"])"
+        }
+      ]
+    }
+  ],
+  "projections": [
+    {
+      "name": "projection",
+      "size": {"signal": "[width, height]"},
+      "fit": {"signal": "[data('data_0'), data('data_1'), data('source_2')]"},
+      "type": "equalEarth"
+    }
+  ],
+  "marks": [
+    {
+      "name": "layer_0_marks",
+      "type": "shape",
+      "style": ["geoshape"],
+      "from": {"data": "data_0"},
+      "encode": {
+        "update": {
+          "fill": {"scale": "color", "field": "Mineral ore per 100000sq\\. km"},
+          "ariaRoleDescription": {"value": "geoshape"},
+          "description": {
+            "signal": "\"Mineral ore per 100000sq. km: \" + (format(datum[\"Mineral ore per 100000sq. km\"], \"\"))"
+          }
+        }
+      },
+      "transform": [{"type": "geoshape", "projection": "projection"}]
+    },
+    {
+      "name": "layer_1_marks",
+      "type": "shape",
+      "style": ["geoshape"],
+      "from": {"data": "data_1"},
+      "encode": {
+        "update": {
+          "fill": {"scale": "color", "field": "Mineral ore per 100000sq\\. km"},
+          "tooltip": {
+            "signal": "{\"Country\": isValid(datum[\"properties.NAME\"]) ? datum[\"properties.NAME\"] : \"\"+datum[\"properties.NAME\"], \"Count\": format(datum[\"count\"], \"\")}"
+          },
+          "ariaRoleDescription": {"value": "geoshape"},
+          "description": {
+            "signal": "\"Mineral ore per 100000sq. km: \" + (format(datum[\"Mineral ore per 100000sq. km\"], \"\")) + \"; Country: \" + (isValid(datum[\"properties.NAME\"]) ? datum[\"properties.NAME\"] : \"\"+datum[\"properties.NAME\"]) + \"; Count: \" + (format(datum[\"count\"], \"\"))"
+          }
+        }
+      },
+      "transform": [{"type": "geoshape", "projection": "projection"}]
+    },
+    {
+      "name": "layer_2_marks",
+      "type": "shape",
+      "style": ["geoshape"],
+      "from": {"data": "source_2"},
+      "encode": {
+        "update": {
+          "fill": {"value": "transparent"},
+          "stroke": {"value": "#4c78a8"},
+          "ariaRoleDescription": {"value": "geoshape"}
+        }
+      },
+      "transform": [{"type": "geoshape", "projection": "projection"}]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "log",
+      "domain": {
+        "fields": [
+          {"data": "data_0", "field": "Mineral ore per 100000sq\\. km"},
+          {"data": "data_1", "field": "Mineral ore per 100000sq\\. km"}
+        ]
+      },
+      "range": "heatmap",
+      "interpolate": "hcl"
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "gradientLength": {"signal": "clamp(height, 64, 200)"},
+      "labelOverlap": "greedy",
+      "title": "Mineral ore per 100000sq. km"
+    }
+  ],
+  "config": {}
+}
