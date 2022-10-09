@@ -1,0 +1,289 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "background": "white",
+  "padding": 5,
+  "width": 600,
+  "height": 400,
+  "title": {
+    "text": "World Production of Mineral Raw Material of Different Capita Income Countries",
+    "frame": "group"
+  },
+  "style": "cell",
+  "data": [
+    {
+      "name": "source_0",
+      "url": "https://raw.githubusercontent.com/CalistaRSaw/3179-Data-Visualisation-2/Homework_10/Minerals%20data/Raw%20mineral%20by%20country.csv",
+      "format": {"type": "csv", "parse": {"Year": "date"}, "delimiter": ","},
+      "transform": [
+        {"type": "filter", "expr": "datum.Mineral ==Mineral_selection"},
+        {
+          "type": "formula",
+          "expr": "datum.annualPerCapitaIncome/1000000",
+          "as": "Mineral Production Mt"
+        }
+      ]
+    },
+    {
+      "name": "data_0",
+      "source": "source_0",
+      "transform": [
+        {
+          "field": "Year",
+          "type": "timeunit",
+          "units": ["year"],
+          "as": ["year_Year", "year_Year_end"]
+        }
+      ]
+    },
+    {
+      "name": "data_1",
+      "source": "data_0",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "(isDate(datum[\"year_Year\"]) || (isValid(datum[\"year_Year\"]) && isFinite(+datum[\"year_Year\"]))) && isValid(datum[\"Mineral Production Mt\"]) && isFinite(+datum[\"Mineral Production Mt\"])"
+        }
+      ]
+    },
+    {
+      "name": "data_2",
+      "source": "source_0",
+      "transform": [
+        {
+          "type": "window",
+          "params": [null],
+          "as": ["ranking"],
+          "ops": ["rank"],
+          "fields": [null],
+          "sort": {"field": ["annualPerCapitaIncome"], "order": ["descending"]}
+        },
+        {"type": "filter", "expr": "datum.ranking == 1"},
+        {
+          "type": "formula",
+          "expr": "'The mineral production ;in this year for; '+datum['Class'] +' ;is ' + datum['annualPerCapitaIncome']+' M tonne'",
+          "as": "text_annotation_raw"
+        },
+        {
+          "type": "formula",
+          "expr": "split(datum.text_annotation_raw, ';')",
+          "as": "text_annotation"
+        },
+        {
+          "field": "Year",
+          "type": "timeunit",
+          "units": ["year"],
+          "as": ["year_Year", "year_Year_end"]
+        },
+        {
+          "type": "filter",
+          "expr": "(isDate(datum[\"year_Year\"]) || (isValid(datum[\"year_Year\"]) && isFinite(+datum[\"year_Year\"]))) && isValid(datum[\"Mineral Production Mt\"]) && isFinite(+datum[\"Mineral Production Mt\"])"
+        }
+      ]
+    }
+  ],
+  "signals": [
+    {
+      "name": "Mineral_selection",
+      "bind": {
+        "input": "select",
+        "options": [null, "Chromium", "Iron"],
+        "labels": ["None: Select a Mineral", "Chromium", "Iron"],
+        "name": "Mineral Selection: "
+      }
+    }
+  ],
+  "marks": [
+    {
+      "name": "layer_0_layer_0_pathgroup",
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "faceted_path_layer_0_layer_0_main",
+          "data": "data_0",
+          "groupby": ["Class"]
+        }
+      },
+      "encode": {
+        "update": {
+          "width": {"field": {"group": "width"}},
+          "height": {"field": {"group": "height"}}
+        }
+      },
+      "marks": [
+        {
+          "name": "layer_0_layer_0_marks",
+          "type": "line",
+          "style": ["line"],
+          "sort": {"field": "datum[\"year_Year\"]"},
+          "from": {"data": "faceted_path_layer_0_layer_0_main"},
+          "encode": {
+            "update": {
+              "stroke": {"scale": "color", "field": "Class"},
+              "tooltip": {
+                "signal": "{\"Year\": timeFormat(datum[\"Year\"], '%Y'), \"Mineral Production(tonne)\": format(datum[\"annualPerCapitaIncome\"], \",\"), \"Class\": isValid(datum[\"Class\"]) ? datum[\"Class\"] : \"\"+datum[\"Class\"], \"Mineral\": isValid(datum[\"Mineral\"]) ? datum[\"Mineral\"] : \"\"+datum[\"Mineral\"]}"
+              },
+              "description": {
+                "signal": "\"Year: \" + (timeFormat(datum[\"year_Year\"], timeUnitSpecifier([\"year\"], {\"year-month\":\"%b %Y \",\"year-month-date\":\"%b %d, %Y \"}))) + \"; Mineral Production (M tonne): \" + (format(datum[\"Mineral Production Mt\"], \"\")) + \"; Annual per Capita Income: \" + (isValid(datum[\"Class\"]) ? datum[\"Class\"] : \"\"+datum[\"Class\"]) + \"; Mineral Production(tonne): \" + (format(datum[\"annualPerCapitaIncome\"], \",\")) + \"; Class: \" + (isValid(datum[\"Class\"]) ? datum[\"Class\"] : \"\"+datum[\"Class\"]) + \"; Mineral: \" + (isValid(datum[\"Mineral\"]) ? datum[\"Mineral\"] : \"\"+datum[\"Mineral\"])"
+              },
+              "x": {"scale": "x", "field": "year_Year"},
+              "y": {"scale": "y", "field": "Mineral Production Mt"},
+              "defined": {
+                "signal": "isValid(datum[\"year_Year\"]) && isFinite(+datum[\"year_Year\"]) && isValid(datum[\"Mineral Production Mt\"]) && isFinite(+datum[\"Mineral Production Mt\"])"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "layer_0_layer_1_marks",
+      "type": "symbol",
+      "style": ["point"],
+      "from": {"data": "data_1"},
+      "encode": {
+        "update": {
+          "opacity": {"value": 1},
+          "fill": {"scale": "color", "field": "Class"},
+          "tooltip": {
+            "signal": "{\"Year\": timeFormat(datum[\"Year\"], '%Y'), \"Mineral Production(tonne)\": format(datum[\"annualPerCapitaIncome\"], \",\"), \"Class\": isValid(datum[\"Class\"]) ? datum[\"Class\"] : \"\"+datum[\"Class\"], \"Mineral\": isValid(datum[\"Mineral\"]) ? datum[\"Mineral\"] : \"\"+datum[\"Mineral\"]}"
+          },
+          "ariaRoleDescription": {"value": "point"},
+          "description": {
+            "signal": "\"Year: \" + (timeFormat(datum[\"year_Year\"], timeUnitSpecifier([\"year\"], {\"year-month\":\"%b %Y \",\"year-month-date\":\"%b %d, %Y \"}))) + \"; Mineral Production (M tonne): \" + (format(datum[\"Mineral Production Mt\"], \"\")) + \"; Annual per Capita Income: \" + (isValid(datum[\"Class\"]) ? datum[\"Class\"] : \"\"+datum[\"Class\"]) + \"; Mineral Production(tonne): \" + (format(datum[\"annualPerCapitaIncome\"], \",\")) + \"; Class: \" + (isValid(datum[\"Class\"]) ? datum[\"Class\"] : \"\"+datum[\"Class\"]) + \"; Mineral: \" + (isValid(datum[\"Mineral\"]) ? datum[\"Mineral\"] : \"\"+datum[\"Mineral\"])"
+          },
+          "x": {"scale": "x", "field": "year_Year"},
+          "y": {"scale": "y", "field": "Mineral Production Mt"}
+        }
+      }
+    },
+    {
+      "name": "layer_1_marks",
+      "type": "text",
+      "style": ["text"],
+      "from": {"data": "data_2"},
+      "encode": {
+        "update": {
+          "align": {"value": "left"},
+          "baseline": {"value": "middle"},
+          "dx": {"value": 3},
+          "dy": {"value": -32},
+          "fontStyle": {"value": "italic"},
+          "fill": {"value": "black"},
+          "tooltip": {
+            "signal": "{\"Year\": timeFormat(datum[\"Year\"], '%Y'), \"Mineral Production(tonne)\": format(datum[\"annualPerCapitaIncome\"], \",\"), \"Class\": isValid(datum[\"Class\"]) ? datum[\"Class\"] : \"\"+datum[\"Class\"], \"Mineral\": isValid(datum[\"Mineral\"]) ? datum[\"Mineral\"] : \"\"+datum[\"Mineral\"]}"
+          },
+          "description": {
+            "signal": "\"Year: \" + (timeFormat(datum[\"year_Year\"], timeUnitSpecifier([\"year\"], {\"year-month\":\"%b %Y \",\"year-month-date\":\"%b %d, %Y \"}))) + \"; Mineral Production (M tonne): \" + (format(datum[\"Mineral Production Mt\"], \"\")) + \"; text_annotation: \" + (isValid(datum[\"text_annotation\"]) ? datum[\"text_annotation\"] : \"\"+datum[\"text_annotation\"]) + \"; Mineral Production(tonne): \" + (format(datum[\"annualPerCapitaIncome\"], \",\")) + \"; Class: \" + (isValid(datum[\"Class\"]) ? datum[\"Class\"] : \"\"+datum[\"Class\"]) + \"; Mineral: \" + (isValid(datum[\"Mineral\"]) ? datum[\"Mineral\"] : \"\"+datum[\"Mineral\"])"
+          },
+          "x": {"scale": "x", "field": "year_Year"},
+          "y": {"scale": "y", "field": "Mineral Production Mt"},
+          "text": {
+            "signal": "isValid(datum[\"text_annotation\"]) ? datum[\"text_annotation\"] : \"\"+datum[\"text_annotation\"]"
+          }
+        }
+      }
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "time",
+      "domain": {
+        "fields": [
+          {"data": "data_0", "field": "year_Year"},
+          {"data": "data_1", "field": "year_Year"},
+          {"data": "data_2", "field": "year_Year"}
+        ]
+      },
+      "range": [0, {"signal": "width"}]
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "fields": [
+          {"data": "data_0", "field": "Mineral Production Mt"},
+          {"data": "data_1", "field": "Mineral Production Mt"},
+          {"data": "data_2", "field": "Mineral Production Mt"}
+        ]
+      },
+      "range": [{"signal": "height"}, 0],
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "fields": [
+          {"data": "data_0", "field": "Class"},
+          {"data": "data_1", "field": "Class"}
+        ],
+        "sort": true
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "gridScale": "y",
+      "grid": true,
+      "tickCount": {"signal": "ceil(width/40)"},
+      "domain": false,
+      "labels": false,
+      "aria": false,
+      "maxExtent": 0,
+      "minExtent": 0,
+      "ticks": false,
+      "zindex": 0
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "gridScale": "x",
+      "grid": true,
+      "tickCount": {"signal": "ceil(height/40)"},
+      "domain": false,
+      "labels": false,
+      "aria": false,
+      "maxExtent": 0,
+      "minExtent": 0,
+      "ticks": false,
+      "zindex": 0
+    },
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "grid": false,
+      "title": "Year",
+      "format": {
+        "signal": "timeUnitSpecifier([\"year\"], {\"year-month\":\"%b %Y \",\"year-month-date\":\"%b %d, %Y \"})"
+      },
+      "labelFlush": true,
+      "labelOverlap": true,
+      "tickCount": {"signal": "ceil(width/40)"},
+      "zindex": 0
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "grid": false,
+      "title": "Mineral Production (M tonne)",
+      "labelOverlap": true,
+      "tickCount": {"signal": "ceil(height/40)"},
+      "zindex": 0
+    }
+  ],
+  "legends": [
+    {
+      "title": "Annual per Capita Income",
+      "stroke": "color",
+      "symbolType": "circle",
+      "fill": "color",
+      "encode": {"symbols": {"update": {"opacity": {"value": 1}}}}
+    }
+  ],
+  "config": {}
+}
