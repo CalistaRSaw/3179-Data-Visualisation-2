@@ -1,9 +1,41 @@
-﻿Mineral,annualPerCapitaIncome,2016,2017,2018,2019,2020
-Iron,High Income,618068056,642284025,655490090,662937000,659459050
-Iron,Upper Middle Income,661693510,680028979,680013095,666424047,626727977
-Iron,Lower Middle Income,178421340,181637810,183545400,218549780,231384620
-Iron,Low Income,7994170,7808070,4881520,4455400,4987210
-Chromium,High Income,701960,592150,837030,807170,645710
-Chromium,Upper Middle Income,10146989,11505653,12084064,12393106,9180162
-Chromium,Lower Middle Income,1791550,1709280,2379150,2674330,2126510
-Chromium,Low Income,183020,413980,63500,45750,12600
+﻿Mineral,Class,Year,annualPerCapitaIncome
+Iron,High Income,2016,618068056
+Iron,Upper Middle Income,2016,661693510
+Iron,Lower Middle Income,2016,178421340
+Iron,Low Income,2016,7994170
+Chromium,High Income,2016,701960
+Chromium,Upper Middle Income,2016,10146989
+Chromium,Lower Middle Income,2016,1791550
+Chromium,Low Income,2016,183020
+Iron,High Income,2017,642284025
+Iron,Upper Middle Income,2017,680028979
+Iron,Lower Middle Income,2017,181637810
+Iron,Low Income,2017,7808070
+Chromium,High Income,2017,592150
+Chromium,Upper Middle Income,2017,11505653
+Chromium,Lower Middle Income,2017,1709280
+Chromium,Low Income,2017,413980
+Iron,High Income,2018,655490090
+Iron,Upper Middle Income,2018,680013095
+Iron,Lower Middle Income,2018,183545400
+Iron,Low Income,2018,4881520
+Chromium,High Income,2018,837030
+Chromium,Upper Middle Income,2018,12084064
+Chromium,Lower Middle Income,2018,2379150
+Chromium,Low Income,2018,63500
+Iron,High Income,2019,662937000
+Iron,Upper Middle Income,2019,666424047
+Iron,Lower Middle Income,2019,218549780
+Iron,Low Income,2019,4455400
+Chromium,High Income,2019,807170
+Chromium,Upper Middle Income,2019,12393106
+Chromium,Lower Middle Income,2019,2674330
+Chromium,Low Income,2019,45750
+Iron,High Income,2020,659459050
+Iron,Upper Middle Income,2020,626727977
+Iron,Lower Middle Income,2020,231384620
+Iron,Low Income,2020,4987210
+Chromium,High Income,2020,645710
+Chromium,Upper Middle Income,2020,9180162
+Chromium,Lower Middle Income,2020,2126510
+Chromium,Low Income,2020,12600
