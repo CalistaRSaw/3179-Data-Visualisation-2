@@ -1,0 +1,24 @@
+#choropleth_map {
+	align-items:left;
+	height: 1000px;
+	width: 400px;
+}
+
+#line_chart {
+	align-items: right;
+	height: 1000px;
+	width: 400px;
+}
+
+h1{
+	font-size: 20;
+}
+
+.description description-left{
+	font-size: 20;
+}
+
+.page {
+    width: 850px;
+    background-color: white;
+}
