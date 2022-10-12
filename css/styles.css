@@ -1,24 +1,46 @@
 #choropleth_map {
-	align-items:left;
-	height: 1000px;
-	width: 400px;
+	align-items:center;
 }
 
 #line_chart {
 	align-items: right;
-	height: 1000px;
 	width: 400px;
+}
+
+#stacked_area{
+    align-items: left;
+    width: 400px;
+}
+
+h2 {
+    margin-top: 0px;
 }
 
 h1{
 	font-size: 20;
+    margin-top: 0px;
 }
 
-.description description-left{
-	font-size: 20;
+.description-right {
+    padding-top: 50px;
+    padding-left: 200px;
+    padding-right:0px;
+}
+
+.description-left {
+    padding-right: 20px;
 }
 
 .page {
     width: 850px;
     background-color: white;
+}
+
+.pure-u-1-1{
+    width: auto;
+    align-items: center;
+}
+
+.vis-container {
+    width: 100%;
 }
