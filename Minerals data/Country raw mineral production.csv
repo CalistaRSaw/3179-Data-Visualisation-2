@@ -1,7 +1,31 @@
-Country,Mineral,2016,2017,2018,2019,2020
-Afghanistan,Chromium,2000,2000,2000,2000,2000
-Afghanistan,Fluorspar,7624,7522,10000,50000,10000
-Afghanistan,Gypsum,57000,40000,36161,24371,15049
-Afghanistan,Salt,56928,75579,47944,114245,10627
-Afghanistan,Steam Coal,1698200,2191400,2444600,2139200,56620
-Afghanistan,Nat. Gas,165,156,153,129,80
+Country,Mineral,Count,Year,,,,,,,,,,
+Afghanistan,Chromium,2000,2016,,,,,,,,,,
+Afghanistan,Fluorspar,7624,2016,,,,,,,,,,
+Afghanistan,Gypsum,57000,2016,,,,,,,,,,
+Afghanistan,Salt,56928,2016,,,,,,,,,,
+Afghanistan,Steam Coal,1698200,2016,,,,,,,,,,
+Afghanistan,Nat. Gas,165,2016,,,,,,,,,,
+Afghanistan,Chromium,2000,2017,,,,,,,,,,
+Afghanistan,Fluorspar,7522,2017,,,,,,,,,,
+Afghanistan,Gypsum,40000,2017,,,,,,,,,,
+Afghanistan,Salt,75579,2017,,,,,,,,,,
+Afghanistan,Steam Coal,2191400,2017,,,,,,,,,,
+Afghanistan,Nat. Gas,156,2017,,,,,,,,,,
+Afghanistan,Chromium,2000,2018,,,,,,,,,,
+Afghanistan,Fluorspar,10000,2018,,,,,,,,,,
+Afghanistan,Gypsum,36161,2018,,,,,,,,,,
+Afghanistan,Salt,47944,2018,,,,,,,,,,
+Afghanistan,Steam Coal,2444600,2018,,,,,,,,,,
+Afghanistan,Nat. Gas,153,2018,,,,,,,,,,
+Afghanistan,Chromium,2000,2019,,,,,,,,,,
+Afghanistan,Fluorspar,50000,2019,,,,,,,,,,
+Afghanistan,Gypsum,24371,2019,,,,,,,,,,
+Afghanistan,Salt,114245,2019,,,,,,,,,,
+Afghanistan,Steam Coal,2139200,2019,,,,,,,,,,
+Afghanistan,Nat. Gas,129,2019,,,,,,,,,,
+Afghanistan,Chromium,2000,2020,,,,,,,,,,
+Afghanistan,Fluorspar,10000,2020,,,,,,,,,,
+Afghanistan,Gypsum,15049,2020,,,,,,,,,,
+Afghanistan,Salt,10627,2020,,,,,,,,,,
+Afghanistan,Steam Coal,56620,2020,,,,,,,,,,
+Afghanistan,Nat. Gas,80,2020,,,,,,,,,,
