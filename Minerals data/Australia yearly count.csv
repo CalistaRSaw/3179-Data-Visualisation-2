@@ -1,0 +1,206 @@
+,index,Country,Mineral,Count,Year
+0,0,Australia,Iron,531075350,2016
+1,1,Australia,Cobalt,5183,2016
+2,2,Australia,Manganese,2388500,2016
+3,3,Australia,Nickel,203135,2016
+4,4,Australia,Tantalum,10,2016
+5,5,Australia,Titanium,1070000,2016
+6,6,Australia,Tungsten,108,2016
+7,7,Australia,Aluminium,1633904,2016
+8,8,Australia,Antimony,4285,2016
+9,9,Australia,Bauxite,83517148,2016
+10,10,Australia,Copper,947555,2016
+11,11,Australia,Lead,441338,2016
+12,12,Australia,Lithium,29640,2016
+13,13,Australia,Rare Earths,13872,2016
+14,14,Australia,Tin,6635,2016
+15,15,Australia,Zinc,884826,2016
+16,16,Australia,Gold,290.767,2016
+17,17,Australia,Palladium,0.61,2016
+18,18,Australia,Platinum,0.152,2016
+19,19,Australia,Silver,1418.219,2016
+20,20,Australia,Baryte,7139,2016
+21,21,Australia,Bentonite,59000,2016
+22,22,Australia,Diam. (Gem),55.832,2016
+23,23,Australia,Diam. (Ind),2735.768,2016
+24,24,Australia,Diatomite,1033,2016
+25,25,Australia,Feldspar,31768,2016
+26,26,Australia,Gypsum,3664700,2016
+27,27,Australia,Kaolin,222229,2016
+28,28,Australia,Magnesite,469455,2016
+29,29,Australia,Perlite,620,2016
+30,30,Australia,Phosphates,238494,2016
+31,31,Australia,Salt,10915520,2016
+32,32,Australia,Sulfur,900000,2016
+33,33,Australia,Talc,111000,2016
+34,34,Australia,Zircon,600000,2016
+35,35,Australia,Steam Coal,249568000,2016
+36,36,Australia,Coking Coal,189302000,2016
+37,37,Australia,Lignite,61473000,2016
+38,38,Australia,Nat. Gas,97328,2016
+39,39,Australia,Petroleum,17188000,2016
+40,40,Australia,Uranium,7352,2016
+41,41,Australia,Iron,548297062,2017
+42,42,Australia,Cobalt,5034,2017
+43,43,Australia,Manganese,2879010,2017
+44,44,Australia,Nickel,185466,2017
+45,45,Australia,Tantalum,20,2017
+46,46,Australia,Titanium,993000,2017
+47,47,Australia,Tungsten,5,2017
+48,48,Australia,Aluminium,1487555,2017
+49,49,Australia,Antimony,3131,2017
+50,50,Australia,Bauxite,89420589,2017
+51,51,Australia,Copper,849121,2017
+52,52,Australia,Lead,395190,2017
+53,53,Australia,Lithium,98260,2017
+54,54,Australia,Rare Earths,17264,2017
+55,55,Australia,Tin,7402,2017
+56,56,Australia,Zinc,852164,2017
+57,57,Australia,Gold,292.022,2017
+58,58,Australia,Palladium,0.61,2017
+59,59,Australia,Platinum,0.155,2017
+60,60,Australia,Silver,1120.175,2017
+61,61,Australia,Baryte,8958,2017
+62,62,Australia,Bentonite,68000,2017
+63,63,Australia,Diam. (Gem),342690,2017
+64,64,Australia,Diam. (Ind),16792040,2017
+65,65,Australia,Diatomite,1085,2017
+66,66,Australia,Feldspar,329,2017
+67,67,Australia,Gypsum,3184480,2017
+68,68,Australia,Kaolin,192150,2017
+69,69,Australia,Magnesite,210844,2017
+70,70,Australia,Perlite,275,2017
+71,71,Australia,Phosphates,216670,2017
+72,72,Australia,Salt,12218780,2017
+73,73,Australia,Sulfur,900000,2017
+74,74,Australia,Talc,120000,2017
+75,75,Australia,Zircon,430850,2017
+76,76,Australia,Steam Coal,252748000,2017
+77,77,Australia,Coking Coal,190000000,2017
+78,78,Australia,Lignite,56719000,2017
+79,79,Australia,Nat. Gas,113805,2017
+80,80,Australia,Petroleum,15591100,2017
+81,81,Australia,Uranium,6736,2017
+82,82,Australia,Iron,560054570,2018
+83,83,Australia,Cobalt,4878,2018
+84,84,Australia,Manganese,3514320,2018
+85,85,Australia,Nickel,160022,2018
+86,86,Australia,Tantalum,40,2018
+87,87,Australia,Titanium,875250,2018
+88,88,Australia,Tungsten,10,2018
+89,89,Australia,Aluminium,1574239,2018
+90,90,Australia,Antimony,2173,2018
+91,91,Australia,Bauxite,95947593,2018
+92,92,Australia,Copper,910896,2018
+93,93,Australia,Lead,446571,2018
+94,94,Australia,Lithium,114920,2018
+95,95,Australia,Rare Earths,18556,2018
+96,96,Australia,Tin,6871,2018
+97,97,Australia,Zinc,1146781,2018
+98,98,Australia,Gold,313.028,2018
+99,99,Australia,Palladium,0.43,2018
+100,100,Australia,Platinum,0.11,2018
+101,101,Australia,Silver,1254.48,2018
+102,102,Australia,Baryte,6535,2018
+103,103,Australia,Bentonite,87330,2018
+104,104,Australia,Diam. (Gem),280160,2018
+105,105,Australia,Diam. (Ind),13727890,2018
+106,106,Australia,Diatomite,4,2018
+107,107,Australia,Feldspar,542,2018
+108,108,Australia,Gypsum,4070814,2018
+109,109,Australia,Kaolin,173738,2018
+110,110,Australia,Magnesite,263446,2018
+111,111,Australia,Perlite,2285,2018
+112,112,Australia,Phosphates,195720,2018
+113,113,Australia,Salt,13493556,2018
+114,114,Australia,Sulfur,900000,2018
+115,115,Australia,Talc,130000,2018
+116,116,Australia,Zircon,522400,2018
+117,117,Australia,Steam Coal,259784000,2018
+118,118,Australia,Coking Coal,179350000,2018
+119,119,Australia,Lignite,45956000,2018
+120,120,Australia,Nat. Gas,130987,2018
+121,121,Australia,Petroleum,16703800,2018
+122,122,Australia,Uranium,7737,2018
+123,123,Australia,Iron,567957086,2019
+124,124,Australia,Cobalt,5741,2019
+125,125,Australia,Manganese,3259200,2019
+126,126,Australia,Nickel,158751,2019
+127,127,Australia,Tantalum,80,2019
+128,128,Australia,Titanium,780465,2019
+129,129,Australia,Tungsten,30,2019
+130,130,Australia,Aluminium,1569619,2019
+131,131,Australia,Antimony,2032,2019
+132,132,Australia,Bauxite,105543787,2019
+133,133,Australia,Copper,925157,2019
+134,134,Australia,Lead,500985,2019
+135,135,Australia,Lithium,103000,2019
+136,136,Australia,Rare Earths,17660,2019
+137,137,Australia,Tin,7738,2019
+138,138,Australia,Zinc,1337321,2019
+139,139,Australia,Gold,326.304,2019
+140,140,Australia,Palladium,0.39,2019
+141,141,Australia,Platinum,0.095,2019
+142,142,Australia,Silver,1325.089,2019
+143,143,Australia,Baryte,1982,2019
+144,144,Australia,Bentonite,56000,2019
+145,145,Australia,Diam. (Gem),243090,2019
+146,146,Australia,Diam. (Ind),11911450,2019
+147,147,Australia,Diatomite,8,2019
+148,148,Australia,Feldspar,50,2019
+149,149,Australia,Gypsum,3676467,2019
+150,150,Australia,Kaolin,114050,2019
+151,151,Australia,Magnesite,413182,2019
+152,152,Australia,Perlite,1264,2019
+153,153,Australia,Phosphates,165750,2019
+154,154,Australia,Salt,12173391,2019
+155,155,Australia,Sulfur,900000,2019
+156,156,Australia,Talc,140000,2019
+157,157,Australia,Zircon,468900,2019
+158,158,Australia,Steam Coal,271388000,2019
+159,159,Australia,Coking Coal,189066000,2019
+160,160,Australia,Lignite,43315000,2019
+161,161,Australia,Nat. Gas,154485,2019
+162,162,Australia,Petroleum,22192000,2019
+163,163,Australia,Uranium,7726,2019
+164,164,Australia,Iron,568384644,2020
+165,165,Australia,Cobalt,5630,2020
+166,166,Australia,Manganese,3356030,2020
+167,167,Australia,Nickel,169344,2020
+168,168,Australia,Tantalum,50,2020
+169,169,Australia,Titanium,830800,2020
+170,170,Australia,Tungsten,100,2020
+171,171,Australia,Aluminium,1585017,2020
+172,172,Australia,Antimony,3903,2020
+173,173,Australia,Bauxite,103626811,2020
+174,174,Australia,Copper,879522,2020
+175,175,Australia,Lead,494271,2020
+176,176,Australia,Lithium,88550,2020
+177,177,Australia,Rare Earths,19440,2020
+178,178,Australia,Tin,8118,2020
+179,179,Australia,Zinc,1314910,2020
+180,180,Australia,Gold,327.889,2020
+181,181,Australia,Palladium,0.42,2020
+182,182,Australia,Platinum,0.1,2020
+183,183,Australia,Silver,1337.344,2020
+184,184,Australia,Baryte,0,2020
+185,185,Australia,Bentonite,65000,2020
+186,186,Australia,Diam. (Gem),199600,2020
+187,187,Australia,Diam. (Ind),9780400,2020
+188,188,Australia,Diatomite,2011,2020
+189,189,Australia,Feldspar,1241,2020
+190,190,Australia,Gypsum,3422265,2020
+191,191,Australia,Kaolin,154812,2020
+192,192,Australia,Magnesite,799203,2020
+193,193,Australia,Perlite,2185,2020
+194,194,Australia,Phosphates,215700,2020
+195,195,Australia,Salt,12212483,2020
+196,196,Australia,Sulfur,900000,2020
+197,197,Australia,Talc,110000,2020
+198,198,Australia,Zircon,380000,2020
+199,199,Australia,Steam Coal,267529000,2020
+200,200,Australia,Coking Coal,183740000,2020
+201,201,Australia,Lignite,41513000,2020
+202,202,Australia,Nat. Gas,154263,2020
+203,203,Australia,Petroleum,22301990,2020
+204,204,Australia,Uranium,7273,2020
