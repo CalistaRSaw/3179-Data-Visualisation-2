@@ -3,13 +3,14 @@
   "background": "white",
   "padding": 5,
   "width": 400,
-  "height": 200,
-  "title": {"text": "Mineral production in Afghanistan", "frame": "group"},
+  "height": 300,
+  "title": {"text": "Top 5 Minerals Produced in Australia", "frame": "group"},
   "style": "cell",
   "data": [
+    {"name": "Mineral_selection_store"},
     {
       "name": "source_0",
-      "url": "https://raw.githubusercontent.com/CalistaRSaw/3179-Data-Visualisation-2/main/Minerals%20data/Country%20raw%20mineral%20production.csv",
+      "url": "https://raw.githubusercontent.com/CalistaRSaw/3179-Data-Visualisation-2/main/Minerals%20data/Australia%20yearly%20count.csv",
       "format": {"type": "csv", "parse": {"Year": "date"}, "delimiter": ","},
       "transform": [
         {
@@ -20,7 +21,7 @@
         },
         {
           "type": "aggregate",
-          "groupby": ["year_Year", "Mineral"],
+          "groupby": ["year_Year", "Mineral", "Count"],
           "ops": ["sum"],
           "fields": ["Count"],
           "as": ["sum_Count"]
@@ -39,7 +40,79 @@
           "field": "sum_Count",
           "sort": {"field": ["Mineral"], "order": ["descending"]},
           "as": ["sum_Count_start", "sum_Count_end"],
-          "offset": "normalize"
+          "offset": "zero"
+        }
+      ]
+    }
+  ],
+  "signals": [
+    {
+      "name": "unit",
+      "value": {},
+      "on": [
+        {"events": "mousemove", "update": "isTuple(group()) ? group() : unit"}
+      ]
+    },
+    {
+      "name": "Mineral_selection_Mineral_legend",
+      "value": null,
+      "on": [
+        {
+          "events": [
+            {
+              "source": "view",
+              "type": "click",
+              "markname": "Mineral_legend_symbols"
+            },
+            {
+              "source": "view",
+              "type": "click",
+              "markname": "Mineral_legend_labels"
+            },
+            {
+              "source": "view",
+              "type": "click",
+              "markname": "Mineral_legend_entries"
+            }
+          ],
+          "update": "datum.value || item().items[0].items[0].datum.value",
+          "force": true
+        },
+        {
+          "events": [{"source": "view", "type": "click"}],
+          "update": "!event.item || !datum ? null : Mineral_selection_Mineral_legend",
+          "force": true
+        }
+      ]
+    },
+    {
+      "name": "Mineral_selection",
+      "update": "vlSelectionResolve(\"Mineral_selection_store\", \"union\", true, true)"
+    },
+    {
+      "name": "Mineral_selection_tuple",
+      "update": "Mineral_selection_Mineral_legend !== null ? {fields: Mineral_selection_tuple_fields, values: [Mineral_selection_Mineral_legend]} : null"
+    },
+    {
+      "name": "Mineral_selection_tuple_fields",
+      "value": [{"type": "E", "field": "Mineral"}]
+    },
+    {
+      "name": "Mineral_selection_toggle",
+      "value": false,
+      "on": [
+        {
+          "events": {"merge": [{"source": "view", "type": "click"}]},
+          "update": "event.shiftKey"
+        }
+      ]
+    },
+    {
+      "name": "Mineral_selection_modify",
+      "on": [
+        {
+          "events": {"signal": "Mineral_selection_tuple"},
+          "update": "modify(\"Mineral_selection_store\", Mineral_selection_toggle ? null : Mineral_selection_tuple, Mineral_selection_toggle ? null : true, Mineral_selection_toggle ? Mineral_selection_tuple : null)"
         }
       ]
     }
@@ -67,13 +140,24 @@
           "type": "area",
           "style": ["area"],
           "sort": {"field": "datum[\"year_Year\"]"},
+          "interactive": true,
           "from": {"data": "faceted_path_main"},
           "encode": {
             "update": {
               "orient": {"value": "vertical"},
               "fill": {"scale": "color", "field": "Mineral"},
+              "opacity": [
+                {
+                  "test": "!length(data(\"Mineral_selection_store\")) || vlSelectionTest(\"Mineral_selection_store\", datum)",
+                  "value": 1
+                },
+                {"value": 0.2}
+              ],
+              "tooltip": {
+                "signal": "{\"Mineral\": isValid(datum[\"Mineral\"]) ? datum[\"Mineral\"] : \"\"+datum[\"Mineral\"], \"Count\": format(datum[\"Count\"], \",\")}"
+              },
               "description": {
-                "signal": "\"Year (year): \" + (timeFormat(datum[\"year_Year\"], '%Y')) + \"; Sum of Count: \" + (format(datum[\"sum_Count_end\"]-datum[\"sum_Count_start\"], \"\")) + \"; Mineral: \" + (isValid(datum[\"Mineral\"]) ? datum[\"Mineral\"] : \"\"+datum[\"Mineral\"])"
+                "signal": "\"Year: \" + (timeFormat(datum[\"year_Year\"], '%Y')) + \"; Amount of Minerals Produced (tonnes): \" + (format(datum[\"sum_Count\"], \"\")) + \"; Mineral: \" + (isValid(datum[\"Mineral\"]) ? datum[\"Mineral\"] : \"\"+datum[\"Mineral\"]) + \"; Count: \" + (format(datum[\"Count\"], \",\"))"
               },
               "x": {"scale": "x", "field": "year_Year"},
               "y": {"scale": "y", "field": "sum_Count_end"},
@@ -97,7 +181,10 @@
     {
       "name": "y",
       "type": "linear",
-      "domain": [0, 1],
+      "domain": {
+        "data": "source_0",
+        "fields": ["sum_Count_start", "sum_Count_end"]
+      },
       "range": [{"signal": "height"}, 0],
       "nice": true,
       "zero": true
@@ -105,8 +192,8 @@
     {
       "name": "color",
       "type": "ordinal",
-      "domain": {"data": "source_0", "field": "Mineral", "sort": true},
-      "range": {"scheme": "category20b"}
+      "domain": ["Iron", "Bauxite", "Steam Coal", "Coking Coal", "Lignite"],
+      "range": ["#e41a1c", "#984ea3", "#ff7f00", "#377eb8", "#a65628"]
     }
   ],
   "axes": [
@@ -142,7 +229,7 @@
       "scale": "x",
       "orient": "bottom",
       "grid": false,
-      "title": "Year (year)",
+      "title": "Year",
       "format": "%Y",
       "labelFlush": true,
       "labelOverlap": true,
@@ -153,12 +240,51 @@
       "scale": "y",
       "orient": "left",
       "grid": false,
-      "title": "Sum of Count",
+      "title": "Amount of Minerals Produced (tonnes)",
       "labelOverlap": true,
       "tickCount": {"signal": "ceil(height/40)"},
       "zindex": 0
     }
   ],
-  "legends": [{"fill": "color", "symbolType": "circle", "title": "Mineral"}],
+  "legends": [
+    {
+      "fill": "color",
+      "symbolType": "circle",
+      "title": "Mineral",
+      "encode": {
+        "labels": {
+          "name": "Mineral_legend_labels",
+          "interactive": true,
+          "update": {
+            "opacity": [
+              {
+                "test": "(!length(data(\"Mineral_selection_store\")) || (Mineral_selection[\"Mineral\"] && indexof(Mineral_selection[\"Mineral\"], datum.value) >= 0))",
+                "value": 1
+              },
+              {"value": 0.35}
+            ]
+          }
+        },
+        "symbols": {
+          "name": "Mineral_legend_symbols",
+          "interactive": true,
+          "update": {
+            "opacity": [
+              {
+                "test": "(!length(data(\"Mineral_selection_store\")) || (Mineral_selection[\"Mineral\"] && indexof(Mineral_selection[\"Mineral\"], datum.value) >= 0))",
+                "value": 1
+              },
+              {"value": 0.35}
+            ]
+          }
+        },
+        "entries": {
+          "name": "Mineral_legend_entries",
+          "interactive": true,
+          "update": {"fill": {"value": "transparent"}}
+        }
+      }
+    }
+  ],
   "config": {}
 }
