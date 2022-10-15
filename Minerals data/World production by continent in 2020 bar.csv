@@ -1,7 +1,7 @@
-﻿Continent,Count
-Africa,889634740
-Asia,10297576978
-Europe,1176169074
-Latin America,951028059
-North America,2646430963
-Oceania,1249138171
+﻿Continent,Count,Surface area
+Africa,889634740,"30,065,000"
+Asia,10297576978,"44,579,000"
+Europe,1176169074,"9,938,000"
+Latin America,951028059,"17,819,000"
+North America,2646430963,"24,256,000"
+Oceania,1249138171,"7,687,000"
