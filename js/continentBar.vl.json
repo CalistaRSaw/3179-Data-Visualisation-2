@@ -1,0 +1,20 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "height": 400,
+  "width": 400,
+  "title": "Absolute Amount of Minerals Produced in each Continent",
+  "data": {
+    "url": "https://raw.githubusercontent.com/CalistaRSaw/3179-Data-Visualisation-2/main/Minerals%20data/World%20production%20by%20continent%20in%202020%20bar.csv"
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {"field": "Continent", "type": "nominal", "axis": {"labelAngle": 0}},
+    "y": {
+      "field": "Count",
+      "type": "quantitative",
+      "title": "Minerals Produced (Tonnes)"
+    },
+    "color": {"value": "#d7d1c5"}
+  },
+  "config": {}
+}
