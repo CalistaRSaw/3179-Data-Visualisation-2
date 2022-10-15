@@ -21,7 +21,7 @@
         },
         {
           "type": "aggregate",
-          "groupby": ["year_Year", "Mineral", "Count"],
+          "groupby": ["year_Year", "Mineral", "Count", "Year"],
           "ops": ["sum"],
           "fields": ["Count"],
           "as": ["sum_Count"]
@@ -154,7 +154,7 @@
                 {"value": 0.2}
               ],
               "tooltip": {
-                "signal": "{\"Mineral\": isValid(datum[\"Mineral\"]) ? datum[\"Mineral\"] : \"\"+datum[\"Mineral\"], \"Count\": format(datum[\"Count\"], \",\")}"
+                "signal": "{\"Mineral\": isValid(datum[\"Mineral\"]) ? datum[\"Mineral\"] : \"\"+datum[\"Mineral\"], \"Count\": format(datum[\"Count\"], \",\"), \"Year\": timeFormat(datum[\"Year\"], '%Y')}"
               },
               "description": {
                 "signal": "\"Year: \" + (timeFormat(datum[\"year_Year\"], '%Y')) + \"; Amount of Minerals Produced (tonnes): \" + (format(datum[\"sum_Count\"], \"\")) + \"; Mineral: \" + (isValid(datum[\"Mineral\"]) ? datum[\"Mineral\"] : \"\"+datum[\"Mineral\"]) + \"; Count: \" + (format(datum[\"Count\"], \",\"))"
