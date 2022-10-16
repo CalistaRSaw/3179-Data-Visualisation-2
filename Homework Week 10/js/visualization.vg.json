@@ -90,6 +90,20 @@
       "name": "layer_0_marks",
       "type": "shape",
       "style": ["geoshape"],
+      "from": {"data": "source_2"},
+      "encode": {
+        "update": {
+          "fill": {"value": "transparent"},
+          "stroke": {"value": "#4c78a8"},
+          "ariaRoleDescription": {"value": "geoshape"}
+        }
+      },
+      "transform": [{"type": "geoshape", "projection": "projection"}]
+    },
+    {
+      "name": "layer_1_marks",
+      "type": "shape",
+      "style": ["geoshape"],
       "from": {"data": "data_0"},
       "encode": {
         "update": {
@@ -103,7 +117,7 @@
       "transform": [{"type": "geoshape", "projection": "projection"}]
     },
     {
-      "name": "layer_1_marks",
+      "name": "layer_2_marks",
       "type": "shape",
       "style": ["geoshape"],
       "from": {"data": "data_1"},
@@ -120,21 +134,7 @@
         }
       },
       "transform": [{"type": "geoshape", "projection": "projection"}]
-    },
-    {
-      "name": "layer_2_marks",
-      "type": "shape",
-      "style": ["geoshape"],
-      "from": {"data": "source_2"},
-      "encode": {
-        "update": {
-          "fill": {"value": "transparent"},
-          "stroke": {"value": "#4c78a8"},
-          "ariaRoleDescription": {"value": "geoshape"}
-        }
-      },
-      "transform": [{"type": "geoshape", "projection": "projection"}]
-    }
+    }  
   ],
   "scales": [
     {
