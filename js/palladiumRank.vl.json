@@ -1,0 +1,84 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Palladium Production Ranking"},
+  "width": 450,
+  "height": 300,
+  "background": "lightgoldenrodyellow",
+  "data": {
+    "url": "https://raw.githubusercontent.com/CalistaRSaw/3179-Data-Visualisation-2/main/Minerals%20data/palladium%20rank%20reformatted.csv"
+  },
+  "params": [
+    {
+      "name": "Top",
+      "value": 5,
+      "bind": {"input": "range", "min": 1, "max": 11, "step": 1}
+    }
+  ],
+  "transform": [{"filter": "datum.rank <= Top"}],
+  "encoding": {
+    "x": {
+      "field": "year",
+      "title": "Year",
+      "timeUnit": "year",
+      "axis": {
+        "labelAngle": 0,
+        "labelFontSize": 12,
+        "tickMinStep": 1,
+        "tickCount": {"expr": "Top"},
+        "titleFontSize": 12
+      }
+    },
+    "y": {
+      "field": "rank",
+      "type": "quantitative",
+      "sort": "descending",
+      "scale": {"domain": [0.5, {"expr": "Top+0.5"}]},
+      "axis": {
+        "labelAngle": 0,
+        "labelFontSize": 12,
+        "tickMinStep": 1,
+        "tickCount": {"expr": "Top"},
+        "titleFontSize": 12
+      },
+      "title": "Rank"
+    },
+    "tooltip": [
+      {"field": "Country", "type": "nominal"},
+      {"field": "rank", "type": "quantitative", "title": "Rank"},
+      {"field": "year", "type": "temporal", "title": "Year", "format": "%Y"}
+    ]
+  },
+  "layer": [
+    {
+      "mark": {"type": "line", "interpolate": "monotone"},
+      "encoding": {
+        "color": {"field": "Country"},
+        "size": {
+          "condition": {"param": "sel_brand_leg", "empty": false, "value": 5},
+          "value": 2
+        }
+      }
+    },
+    {
+      "params": [
+        {
+          "name": "sel_brand_leg",
+          "select": {"type": "point", "on": "click", "fields": ["Country"]},
+          "bind": "legend"
+        }
+      ],
+      "mark": {"type": "tick", "thickness": 5},
+      "encoding": {
+        "color": {
+          "condition": {
+            "param": "sel_brand_leg",
+            "empty": false,
+            "value": "black"
+          },
+          "field": "Country"
+        }
+      }
+    }
+  ],
+  "config": {}
+}

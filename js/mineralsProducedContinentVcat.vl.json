@@ -3,13 +3,14 @@
   "data": {
     "url": "https://raw.githubusercontent.com/CalistaRSaw/3179-Data-Visualisation-2/main/Minerals%20data/World%20production%20by%20continent%20in%202020%20bar.csv"
   },
+  "background": "lightgoldenrodyellow",
   "transform": [
     {"calculate": "datum.Count/datum.Area", "as": "normalisedCount"}
   ],
   "vconcat": [
     {
-      "height": 200,
-      "width": 400,
+      "height": 150,
+      "width": 500,
       "title": "Absolute",
       "mark": "bar",
       "encoding": {
@@ -27,8 +28,8 @@
       }
     },
     {
-      "height": 200,
-      "width": 400,
+      "height": 150,
+      "width": 500,
       "title": "Normalized",
       "mark": "bar",
       "encoding": {

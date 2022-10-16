@@ -15,6 +15,9 @@
     <!-- CSS file -->
     <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik%20Distressed">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open%20Sans">
+
 
   </head>
   <body>
@@ -93,6 +96,22 @@
       </div>
       <!-- end pure grid group -->
 
+      <!-- pure grid group -->
+      <div class="pure-g">
+        <div class="pure-u-1-3" style="width: 30%;">
+          <div class="description description-left">
+            <h2>Palladium Rank</h2>
+            <p>Using all three columns without merging. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat
+              sed. Egestas purus viverra accumsan in nisl. Egestas purus viverra accumsan in nisl.</p>
+          </div>
+        </div>
+        <div class="pure-u-2-3">
+          <div id="palladiumRank" class="vis-container"></div>
+        </div>
+      </div>
+      <!-- end pure grid group -->
+
     </div>
 
 
@@ -114,13 +133,18 @@
         // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
       }).catch(console.error);
 
-      var spec4 = "js/mineralsProducedContinentVcat.vg.json";
+      var spec4 = "js/mineralsProducedContinentVcat.vl.json";
       vegaEmbed('#barVcat', spec4, {"actions": false}).then(function(result) {
         // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
       }).catch(console.error);
 
-      var spec5 = "js/palladiumDevelopmentStatus.vg.json";
+      var spec5 = "js/palladiumDevelopmentStatus.vl.json";
       vegaEmbed('#palladiumLine', spec5, {"actions": false}).then(function(result) {
+        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+      }).catch(console.error);
+
+      var spec6 = "js/palladiumRank.vl.json";
+      vegaEmbed('#palladiumRank', spec6, {"actions": false}).then(function(result) {
         // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
       }).catch(console.error);
 

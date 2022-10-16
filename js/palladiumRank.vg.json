@@ -1,0 +1,365 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "background": "white",
+  "padding": 5,
+  "width": 400,
+  "height": 300,
+  "title": {"text": "Palladium Production Ranking", "frame": "group"},
+  "style": "cell",
+  "data": [
+    {"name": "sel_brand_leg_store"},
+    {
+      "name": "source_0",
+      "url": "https://raw.githubusercontent.com/CalistaRSaw/3179-Data-Visualisation-2/main/Minerals%20data/palladium%20rank%20reformatted.csv",
+      "format": {"type": "csv", "parse": {"year": "date"}, "delimiter": ","},
+      "transform": [
+        {"type": "filter", "expr": "datum.rank <= Top"},
+        {
+          "field": "year",
+          "type": "timeunit",
+          "units": ["year"],
+          "as": ["year_year", "year_year_end"]
+        }
+      ]
+    },
+    {
+      "name": "data_0",
+      "source": "source_0",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "(isDate(datum[\"year_year\"]) || (isValid(datum[\"year_year\"]) && isFinite(+datum[\"year_year\"]))) && isValid(datum[\"rank\"]) && isFinite(+datum[\"rank\"])"
+        }
+      ]
+    }
+  ],
+  "signals": [
+    {
+      "name": "unit",
+      "value": {},
+      "on": [
+        {"events": "mousemove", "update": "isTuple(group()) ? group() : unit"}
+      ]
+    },
+    {
+      "name": "sel_brand_leg_Country_legend",
+      "value": null,
+      "on": [
+        {
+          "events": [
+            {
+              "source": "view",
+              "type": "click",
+              "markname": "Country_legend_symbols"
+            },
+            {
+              "source": "view",
+              "type": "click",
+              "markname": "Country_legend_labels"
+            },
+            {
+              "source": "view",
+              "type": "click",
+              "markname": "Country_legend_entries"
+            }
+          ],
+          "update": "datum.value || item().items[0].items[0].datum.value",
+          "force": true
+        },
+        {
+          "events": [{"source": "view", "type": "click"}],
+          "update": "!event.item || !datum ? null : sel_brand_leg_Country_legend",
+          "force": true
+        }
+      ]
+    },
+    {
+      "name": "sel_brand_leg",
+      "update": "vlSelectionResolve(\"sel_brand_leg_store\", \"union\", true, true)"
+    },
+    {
+      "name": "Top",
+      "value": 5,
+      "bind": {"input": "range", "min": 1, "max": 11, "step": 1}
+    },
+    {
+      "name": "sel_brand_leg_tuple",
+      "on": [
+        {
+          "events": [
+            {
+              "source": "scope",
+              "type": "click",
+              "filter": [
+                "event.item && indexof(event.item.mark.role, \"legend\") < 0"
+              ]
+            }
+          ],
+          "update": "datum && item().mark.marktype !== 'group' ? {unit: \"layer_1\", fields: sel_brand_leg_tuple_fields, values: [(item().isVoronoi ? datum.datum : datum)[\"Country\"]]} : null",
+          "force": true
+        },
+        {
+          "events": [{"signal": "sel_brand_leg_Country_legend"}],
+          "update": "sel_brand_leg_Country_legend !== null ? {fields: sel_brand_leg_tuple_fields, values: [sel_brand_leg_Country_legend]} : null"
+        }
+      ]
+    },
+    {
+      "name": "sel_brand_leg_tuple_fields",
+      "value": [{"type": "E", "field": "Country"}]
+    },
+    {
+      "name": "sel_brand_leg_toggle",
+      "value": false,
+      "on": [
+        {
+          "events": [
+            {
+              "source": "scope",
+              "type": "click",
+              "filter": [
+                "event.item && indexof(event.item.mark.role, \"legend\") < 0"
+              ]
+            }
+          ],
+          "update": "event.shiftKey"
+        },
+        {
+          "events": {"merge": [{"source": "view", "type": "click"}]},
+          "update": "event.shiftKey"
+        }
+      ]
+    },
+    {
+      "name": "sel_brand_leg_modify",
+      "on": [
+        {
+          "events": {"signal": "sel_brand_leg_tuple"},
+          "update": "modify(\"sel_brand_leg_store\", sel_brand_leg_toggle ? null : sel_brand_leg_tuple, sel_brand_leg_toggle ? null : true, sel_brand_leg_toggle ? sel_brand_leg_tuple : null)"
+        }
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "name": "layer_0_pathgroup",
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "faceted_path_layer_0_main",
+          "data": "source_0",
+          "groupby": ["Country"]
+        }
+      },
+      "encode": {
+        "update": {
+          "width": {"field": {"group": "width"}},
+          "height": {"field": {"group": "height"}}
+        }
+      },
+      "marks": [
+        {
+          "name": "layer_0_marks",
+          "type": "line",
+          "style": ["line"],
+          "sort": {"field": "datum[\"year_year\"]"},
+          "interactive": true,
+          "from": {"data": "faceted_path_layer_0_main"},
+          "encode": {
+            "update": {
+              "interpolate": {"value": "monotone"},
+              "stroke": {"scale": "color", "field": "Country"},
+              "tooltip": {
+                "signal": "{\"Country\": isValid(datum[\"Country\"]) ? datum[\"Country\"] : \"\"+datum[\"Country\"], \"Rank\": format(datum[\"rank\"], \"\"), \"Year\": timeFormat(datum[\"year\"], '%Y')}"
+              },
+              "description": {
+                "signal": "\"Year: \" + (timeFormat(datum[\"year_year\"], timeUnitSpecifier([\"year\"], {\"year-month\":\"%b %Y \",\"year-month-date\":\"%b %d, %Y \"}))) + \"; Rank: \" + (format(datum[\"rank\"], \"\")) + \"; Country: \" + (isValid(datum[\"Country\"]) ? datum[\"Country\"] : \"\"+datum[\"Country\"])"
+              },
+              "x": {"scale": "x", "field": "year_year"},
+              "y": {"scale": "y", "field": "rank"},
+              "strokeWidth": [
+                {
+                  "test": "length(data(\"sel_brand_leg_store\")) && vlSelectionTest(\"sel_brand_leg_store\", datum)",
+                  "value": 3
+                },
+                {"value": 1}
+              ],
+              "defined": {
+                "signal": "isValid(datum[\"year_year\"]) && isFinite(+datum[\"year_year\"]) && isValid(datum[\"rank\"]) && isFinite(+datum[\"rank\"])"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "layer_1_marks",
+      "type": "rect",
+      "style": ["tick"],
+      "interactive": true,
+      "from": {"data": "data_0"},
+      "encode": {
+        "update": {
+          "opacity": {"value": 0.7},
+          "fill": [
+            {
+              "test": "length(data(\"sel_brand_leg_store\")) && vlSelectionTest(\"sel_brand_leg_store\", datum)",
+              "value": "black"
+            },
+            {"scale": "color", "field": "Country"}
+          ],
+          "tooltip": {
+            "signal": "{\"Country\": isValid(datum[\"Country\"]) ? datum[\"Country\"] : \"\"+datum[\"Country\"], \"Rank\": format(datum[\"rank\"], \"\"), \"Year\": timeFormat(datum[\"year\"], '%Y')}"
+          },
+          "ariaRoleDescription": {"value": "tick"},
+          "description": {
+            "signal": "\"Year: \" + (timeFormat(datum[\"year_year\"], timeUnitSpecifier([\"year\"], {\"year-month\":\"%b %Y \",\"year-month-date\":\"%b %d, %Y \"}))) + \"; Rank: \" + (format(datum[\"rank\"], \"\")) + \"; Country: \" + (isValid(datum[\"Country\"]) ? datum[\"Country\"] : \"\"+datum[\"Country\"])"
+          },
+          "xc": {"scale": "x", "field": "year_year"},
+          "yc": {"scale": "y", "field": "rank"},
+          "width": {"value": 15},
+          "height": {"value": 3}
+        }
+      }
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "time",
+      "domain": {
+        "fields": [
+          {"data": "source_0", "field": "year_year"},
+          {"data": "data_0", "field": "year_year"}
+        ]
+      },
+      "range": [0, {"signal": "width"}]
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": [0.5, {"signal": "Top+0.5"}],
+      "range": [{"signal": "height"}, 0],
+      "reverse": true,
+      "zero": false
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "fields": [
+          {"data": "source_0", "field": "Country"},
+          {"data": "data_0", "field": "Country"}
+        ],
+        "sort": true
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "tickCount": {"signal": "Top"},
+      "tickMinStep": 1,
+      "gridScale": "y",
+      "grid": true,
+      "domain": false,
+      "labels": false,
+      "aria": false,
+      "maxExtent": 0,
+      "minExtent": 0,
+      "ticks": false,
+      "zindex": 0
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "tickCount": {"signal": "Top"},
+      "tickMinStep": 1,
+      "gridScale": "x",
+      "grid": true,
+      "domain": false,
+      "labels": false,
+      "aria": false,
+      "maxExtent": 0,
+      "minExtent": 0,
+      "ticks": false,
+      "zindex": 0
+    },
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "grid": false,
+      "title": "Year",
+      "labelAngle": 0,
+      "labelFontSize": 12,
+      "tickCount": {"signal": "Top"},
+      "tickMinStep": 1,
+      "titleFontSize": 12,
+      "format": {
+        "signal": "timeUnitSpecifier([\"year\"], {\"year-month\":\"%b %Y \",\"year-month-date\":\"%b %d, %Y \"})"
+      },
+      "labelBaseline": "top",
+      "labelFlush": true,
+      "labelOverlap": true,
+      "zindex": 0
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "grid": false,
+      "title": "Rank",
+      "labelAngle": 0,
+      "labelFontSize": 12,
+      "tickCount": {"signal": "Top"},
+      "tickMinStep": 1,
+      "titleFontSize": 12,
+      "labelAlign": "right",
+      "labelOverlap": true,
+      "zindex": 0
+    }
+  ],
+  "legends": [
+    {
+      "stroke": "color",
+      "symbolType": "circle",
+      "title": "Country",
+      "fill": "color",
+      "encode": {
+        "labels": {
+          "name": "Country_legend_labels",
+          "interactive": true,
+          "update": {
+            "opacity": [
+              {
+                "test": "(!length(data(\"sel_brand_leg_store\")) || (sel_brand_leg[\"Country\"] && indexof(sel_brand_leg[\"Country\"], datum.value) >= 0))",
+                "value": 1
+              },
+              {"value": 0.35}
+            ]
+          }
+        },
+        "symbols": {
+          "name": "Country_legend_symbols",
+          "interactive": true,
+          "update": {
+            "opacity": [
+              {
+                "test": "(!length(data(\"sel_brand_leg_store\")) || (sel_brand_leg[\"Country\"] && indexof(sel_brand_leg[\"Country\"], datum.value) >= 0))",
+                "value": 0.7
+              },
+              {"value": 0.35}
+            ]
+          }
+        },
+        "entries": {
+          "name": "Country_legend_entries",
+          "interactive": true,
+          "update": {"fill": {"value": "transparent"}}
+        }
+      }
+    }
+  ],
+  "config": {}
+}

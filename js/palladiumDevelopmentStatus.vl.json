@@ -1,8 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Production of Palladium over Time",
-  "width": 400,
+  "width": 350,
   "height": 250,
+  "background": "lightgoldenrodyellow",
   "data": {
     "url": "https://raw.githubusercontent.com/CalistaRSaw/3179-Data-Visualisation-2/main/Minerals%20data/palladium%20development%20status.csv"
   },
