@@ -29,7 +29,7 @@
 
     <!-- pure grid group -->
     <div class="pure-g">
-        <div class="pure-u-1-2">
+        <div class="pure-u-1-3" style="width: 30%">
           <div class="description description-left">
             <h2>Comparing different capita income</h2>
             <p>
@@ -38,19 +38,19 @@
               dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat sed. </p>
           </div>
         </div>
-        <div class="pure-u-1-2">
-            <div id="line_chart" class="vis-container" style="margin-left: 400px;"></div>
+        <div class="pure-u-2-3" style="width: 70%">
+            <div id="line_chart" class="vis-container"></div>
         </div>
     </div>
       <!-- end pure grid group -->
     <!-- pure grid group -->
     <div class="pure-g">
-        <div class="pure-u-1-2">
+        <div class="pure-u-2-3" style="width: 70%">
             <div id="stacked_area" class="vis-container"></div>
         </div>
-        <div class="pure-u-1-2">
-          <div class="description description-right" style="width: 50%">
-            <h2>Proportion of Minerals in a country</h2>
+        <div class="pure-u-1-3" style="width: 30%">
+          <div class="description description-right">
+            <h2>In Australia ...</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
               dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
@@ -59,8 +59,21 @@
         </div>
     </div>
     <!-- end pure grid group -->
-  
-  </div>
+    
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-3" style="width: 30%;">
+        <div class="description description-left">
+          <h2>Each Continent</h2>
+          <p>Using all three columns without merging. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat
+            sed. Egestas purus viverra accumsan in nisl. Egestas purus viverra accumsan in nisl.</p>
+        </div>
+      </div>
+      <div class="pure-u-2-3">
+        <div id="barVcat" class="vis-container"></div>
+      </div>
+    </div>
   
 
 
@@ -68,18 +81,25 @@
 <script type="text/javascript">
 
   var spec1 = "Homework Week 10/js/visualization.vg.json";
-  vegaEmbed('#choropleth_map', spec1).then(function(result) {
+  vegaEmbed('#choropleth_map', spec1, {"actions": false}).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
 
   var spec2 = "Homework Week 10/js/WorldProductionCapitaIncome.vg.json";
-  vegaEmbed('#line_chart', spec2).then(function(result) {
+  vegaEmbed('#line_chart', spec2, {"actions": false}).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
+
   var spec3 = "js/mineralProductionInCountry.vg.json";
-  vegaEmbed('#stacked_area', spec3).then(function(result) {
+  vegaEmbed('#stacked_area', spec3, {"actions": false}).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
+
+  var spec4 = "js/mineralsProducedContinentVcat.vg.json";
+  vegaEmbed('#barVcat', spec4, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
 </script>
 
 </body>

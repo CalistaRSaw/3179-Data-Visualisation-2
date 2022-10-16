@@ -1,0 +1,234 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "background": "white",
+  "padding": 5,
+  "width": 500,
+  "data": [
+    {
+      "name": "source_0",
+      "url": "https://raw.githubusercontent.com/CalistaRSaw/3179-Data-Visualisation-2/main/Minerals%20data/World%20production%20by%20continent%20in%202020%20bar.csv",
+      "format": {"type": "csv", "delimiter": ","},
+      "transform": [
+        {
+          "type": "formula",
+          "expr": "datum.Count/datum.Area",
+          "as": "normalisedCount"
+        }
+      ]
+    },
+    {
+      "name": "data_0",
+      "source": "source_0",
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": ["Continent"],
+          "field": "Count",
+          "sort": {"field": [], "order": []},
+          "as": ["Count_start", "Count_end"],
+          "offset": "zero"
+        },
+        {
+          "type": "filter",
+          "expr": "isValid(datum[\"Count\"]) && isFinite(+datum[\"Count\"])"
+        }
+      ]
+    },
+    {
+      "name": "data_1",
+      "source": "source_0",
+      "transform": [
+        {
+          "type": "stack",
+          "groupby": ["Continent"],
+          "field": "normalisedCount",
+          "sort": {"field": [], "order": []},
+          "as": ["normalisedCount_start", "normalisedCount_end"],
+          "offset": "zero"
+        },
+        {
+          "type": "filter",
+          "expr": "isValid(datum[\"normalisedCount\"]) && isFinite(+datum[\"normalisedCount\"])"
+        }
+      ]
+    }
+  ],
+  "signals": [{"name": "childHeight", "value": 150}],
+  "layout": {"padding": 20, "columns": 1, "bounds": "full", "align": "each"},
+  "marks": [
+    {
+      "type": "group",
+      "name": "concat_0_group",
+      "title": {"text": "Absolute", "frame": "group"},
+      "style": "cell",
+      "encode": {
+        "update": {
+          "width": {"signal": "width"},
+          "height": {"signal": "childHeight"}
+        }
+      },
+      "marks": [
+        {
+          "name": "concat_0_marks",
+          "type": "rect",
+          "style": ["bar"],
+          "from": {"data": "data_0"},
+          "encode": {
+            "update": {
+              "fill": {"value": "#d7d1c5"},
+              "ariaRoleDescription": {"value": "bar"},
+              "description": {
+                "signal": "\"Minerals Produced (Tonnes): \" + (format(datum[\"Count\"], \"\")) + \"; Continent: \" + (isValid(datum[\"Continent\"]) ? datum[\"Continent\"] : \"\"+datum[\"Continent\"])"
+              },
+              "x": {"scale": "concat_0_x", "field": "Count_end"},
+              "x2": {"scale": "concat_0_x", "field": "Count_start"},
+              "y": {"scale": "concat_0_y", "field": "Continent"},
+              "height": {"scale": "concat_0_y", "band": 1}
+            }
+          }
+        }
+      ],
+      "axes": [
+        {
+          "scale": "concat_0_x",
+          "orient": "bottom",
+          "gridScale": "concat_0_y",
+          "grid": true,
+          "tickCount": {"signal": "ceil(width/40)"},
+          "domain": false,
+          "labels": false,
+          "aria": false,
+          "maxExtent": 0,
+          "minExtent": 0,
+          "ticks": false,
+          "zindex": 0
+        },
+        {
+          "scale": "concat_0_x",
+          "orient": "bottom",
+          "grid": false,
+          "title": "Minerals Produced (Tonnes)",
+          "labelFlush": true,
+          "labelOverlap": true,
+          "tickCount": {"signal": "ceil(width/40)"},
+          "zindex": 0
+        },
+        {
+          "scale": "concat_0_y",
+          "orient": "left",
+          "grid": false,
+          "title": "Continent",
+          "labelAngle": 0,
+          "labelAlign": "right",
+          "zindex": 0
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "name": "concat_1_group",
+      "title": {"text": "Normalized", "frame": "group"},
+      "style": "cell",
+      "encode": {
+        "update": {
+          "width": {"signal": "width"},
+          "height": {"signal": "childHeight"}
+        }
+      },
+      "marks": [
+        {
+          "name": "concat_1_marks",
+          "type": "rect",
+          "style": ["bar"],
+          "from": {"data": "data_1"},
+          "encode": {
+            "update": {
+              "fill": {"value": "#d7d1c5"},
+              "ariaRoleDescription": {"value": "bar"},
+              "description": {
+                "signal": "\"Minerals Produced (Tonnes/ square km): \" + (format(datum[\"normalisedCount\"], \"\")) + \"; Continent: \" + (isValid(datum[\"Continent\"]) ? datum[\"Continent\"] : \"\"+datum[\"Continent\"])"
+              },
+              "x": {"scale": "concat_1_x", "field": "normalisedCount_end"},
+              "x2": {"scale": "concat_1_x", "field": "normalisedCount_start"},
+              "y": {"scale": "concat_1_y", "field": "Continent"},
+              "height": {"scale": "concat_1_y", "band": 1}
+            }
+          }
+        }
+      ],
+      "axes": [
+        {
+          "scale": "concat_1_x",
+          "orient": "bottom",
+          "gridScale": "concat_1_y",
+          "grid": true,
+          "tickCount": {"signal": "ceil(width/40)"},
+          "domain": false,
+          "labels": false,
+          "aria": false,
+          "maxExtent": 0,
+          "minExtent": 0,
+          "ticks": false,
+          "zindex": 0
+        },
+        {
+          "scale": "concat_1_x",
+          "orient": "bottom",
+          "grid": false,
+          "title": "Minerals Produced (Tonnes/ square km)",
+          "labelFlush": true,
+          "labelOverlap": true,
+          "tickCount": {"signal": "ceil(width/40)"},
+          "zindex": 0
+        },
+        {
+          "scale": "concat_1_y",
+          "orient": "left",
+          "grid": false,
+          "title": "Continent",
+          "labelAngle": 0,
+          "labelAlign": "right",
+          "zindex": 0
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "concat_0_x",
+      "type": "linear",
+      "domain": {"data": "data_0", "fields": ["Count_start", "Count_end"]},
+      "range": [0, {"signal": "width"}],
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "concat_0_y",
+      "type": "band",
+      "domain": {"data": "data_0", "field": "Continent", "sort": true},
+      "range": [0, {"signal": "childHeight"}],
+      "paddingInner": 0.1,
+      "paddingOuter": 0.05
+    },
+    {
+      "name": "concat_1_x",
+      "type": "linear",
+      "domain": {
+        "data": "data_1",
+        "fields": ["normalisedCount_start", "normalisedCount_end"]
+      },
+      "range": [0, {"signal": "width"}],
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "concat_1_y",
+      "type": "band",
+      "domain": {"data": "data_1", "field": "Continent", "sort": true},
+      "range": [0, {"signal": "childHeight"}],
+      "paddingInner": 0.1,
+      "paddingOuter": 0.05
+    }
+  ],
+  "config": {}
+}

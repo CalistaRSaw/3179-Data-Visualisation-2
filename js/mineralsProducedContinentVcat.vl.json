@@ -1,0 +1,50 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/CalistaRSaw/3179-Data-Visualisation-2/main/Minerals%20data/World%20production%20by%20continent%20in%202020%20bar.csv"
+  },
+  "transform": [
+    {"calculate": "datum.Count/datum.Area", "as": "normalisedCount"}
+  ],
+  "vconcat": [
+    {
+      "height": 200,
+      "width": 400,
+      "title": "Absolute",
+      "mark": "bar",
+      "encoding": {
+        "y": {
+          "field": "Continent",
+          "type": "nominal",
+          "axis": {"labelAngle": 0}
+        },
+        "x": {
+          "field": "Count",
+          "type": "quantitative",
+          "title": "Minerals Produced (Tonnes)"
+        },
+        "color": {"value": "#d7d1c5"}
+      }
+    },
+    {
+      "height": 200,
+      "width": 400,
+      "title": "Normalized",
+      "mark": "bar",
+      "encoding": {
+        "y": {
+          "field": "Continent",
+          "type": "nominal",
+          "axis": {"labelAngle": 0}
+        },
+        "x": {
+          "field": "normalisedCount",
+          "type": "quantitative",
+          "title": "Minerals Produced (Tonnes/ square km)"
+        },
+        "color": {"value": "#d7d1c5"}
+      }
+    }
+  ],
+  "config": {}
+}

@@ -2,10 +2,10 @@
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "background": "white",
   "padding": 5,
-  "width": 200,
+  "width": 100,
   "height": 300,
   "title": {
-    "text": "Absolute Amount of Minerals Produced in each Continent",
+    "text": "Amount of Minerals Produced in each Continent per square km",
     "frame": "group"
   },
   "style": "cell",
@@ -16,16 +16,21 @@
       "format": {"type": "csv", "delimiter": ","},
       "transform": [
         {
+          "type": "formula",
+          "expr": "datum.Count/datum.Area",
+          "as": "normalisedCount"
+        },
+        {
           "type": "stack",
           "groupby": ["Continent"],
-          "field": "Count",
+          "field": "normalisedCount",
           "sort": {"field": [], "order": []},
-          "as": ["Count_start", "Count_end"],
+          "as": ["normalisedCount_start", "normalisedCount_end"],
           "offset": "zero"
         },
         {
           "type": "filter",
-          "expr": "isValid(datum[\"Count\"]) && isFinite(+datum[\"Count\"])"
+          "expr": "isValid(datum[\"normalisedCount\"]) && isFinite(+datum[\"normalisedCount\"])"
         }
       ]
     }
@@ -41,12 +46,12 @@
           "fill": {"value": "#d7d1c5"},
           "ariaRoleDescription": {"value": "bar"},
           "description": {
-            "signal": "\"Continent: \" + (isValid(datum[\"Continent\"]) ? datum[\"Continent\"] : \"\"+datum[\"Continent\"]) + \"; Minerals Produced (Tonnes): \" + (format(datum[\"Count\"], \"\"))"
+            "signal": "\"Continent: \" + (isValid(datum[\"Continent\"]) ? datum[\"Continent\"] : \"\"+datum[\"Continent\"]) + \"; Minerals Produced (Tonnes/ square km): \" + (format(datum[\"normalisedCount\"], \"\"))"
           },
           "x": {"scale": "x", "field": "Continent"},
           "width": {"scale": "x", "band": 1},
-          "y": {"scale": "y", "field": "Count_end"},
-          "y2": {"scale": "y", "field": "Count_start"}
+          "y": {"scale": "y", "field": "normalisedCount_end"},
+          "y2": {"scale": "y", "field": "normalisedCount_start"}
         }
       }
     }
@@ -63,7 +68,10 @@
     {
       "name": "y",
       "type": "linear",
-      "domain": {"data": "source_0", "fields": ["Count_start", "Count_end"]},
+      "domain": {
+        "data": "source_0",
+        "fields": ["normalisedCount_start", "normalisedCount_end"]
+      },
       "range": [{"signal": "height"}, 0],
       "nice": true,
       "zero": true
@@ -97,7 +105,7 @@
       "scale": "y",
       "orient": "left",
       "grid": false,
-      "title": "Minerals Produced (Tonnes)",
+      "title": "Minerals Produced (Tonnes/ square km)",
       "labelOverlap": true,
       "tickCount": {"signal": "ceil(height/40)"},
       "zindex": 0
