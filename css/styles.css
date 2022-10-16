@@ -15,16 +15,20 @@
 
 body {
     background-image: url('https://images.unsplash.com/photo-1624541150832-9b275bb5f588?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80');
+    font-family: 'Open Sans';
 }
 
 h2 {
     margin-top: 0px;
+    text-align: center;
 }
 
 h1{
-	font-size: 40px;
+	font-size: 45px;
     text-align: center;
     margin-top: 0px;
+    font-family: 'Rubik Distressed';
+    font-weight: normal;
 }
 
 .description-right {
