@@ -1,0 +1,204 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "background": "white",
+  "padding": 5,
+  "width": 350,
+  "height": 250,
+  "title": {"text": "Production of Palladium over Time", "frame": "group"},
+  "style": "cell",
+  "data": [
+    {
+      "name": "source_0",
+      "url": "https://raw.githubusercontent.com/CalistaRSaw/3179-Data-Visualisation-2/main/Minerals%20data/palladium%20development%20status.csv",
+      "format": {"type": "csv", "parse": {"year": "date"}, "delimiter": ","},
+      "transform": [
+        {
+          "field": "year",
+          "type": "timeunit",
+          "units": ["year"],
+          "as": ["year_year", "year_year_end"]
+        },
+        {
+          "type": "aggregate",
+          "groupby": ["year_year", "developmentStatus"],
+          "ops": ["sum"],
+          "fields": ["count"],
+          "as": ["sum_count"]
+        }
+      ]
+    },
+    {
+      "name": "data_0",
+      "source": "source_0",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "(isDate(datum[\"year_year\"]) || (isValid(datum[\"year_year\"]) && isFinite(+datum[\"year_year\"]))) && isValid(datum[\"sum_count\"]) && isFinite(+datum[\"sum_count\"])"
+        }
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "name": "layer_0_pathgroup",
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "faceted_path_layer_0_main",
+          "data": "source_0",
+          "groupby": ["developmentStatus"]
+        }
+      },
+      "encode": {
+        "update": {
+          "width": {"field": {"group": "width"}},
+          "height": {"field": {"group": "height"}}
+        }
+      },
+      "marks": [
+        {
+          "name": "layer_0_marks",
+          "type": "line",
+          "style": ["line"],
+          "sort": {"field": "datum[\"year_year\"]"},
+          "from": {"data": "faceted_path_layer_0_main"},
+          "encode": {
+            "update": {
+              "stroke": {"scale": "color", "field": "developmentStatus"},
+              "description": {
+                "signal": "\"Year: \" + (timeFormat(datum[\"year_year\"], timeUnitSpecifier([\"year\"], {\"year-month\":\"%b %Y \",\"year-month-date\":\"%b %d, %Y \"}))) + \"; Palladium Produced (kg): \" + (format(datum[\"sum_count\"], \"\")) + \"; Development Status: \" + (isValid(datum[\"developmentStatus\"]) ? datum[\"developmentStatus\"] : \"\"+datum[\"developmentStatus\"])"
+              },
+              "x": {"scale": "x", "field": "year_year"},
+              "y": {"scale": "y", "field": "sum_count"},
+              "defined": {
+                "signal": "isValid(datum[\"year_year\"]) && isFinite(+datum[\"year_year\"]) && isValid(datum[\"sum_count\"]) && isFinite(+datum[\"sum_count\"])"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "layer_1_marks",
+      "type": "symbol",
+      "style": ["point"],
+      "from": {"data": "data_0"},
+      "encode": {
+        "update": {
+          "opacity": {"value": 1},
+          "fill": {"value": "white"},
+          "stroke": {"scale": "color", "field": "developmentStatus"},
+          "ariaRoleDescription": {"value": "point"},
+          "description": {
+            "signal": "\"Year: \" + (timeFormat(datum[\"year_year\"], timeUnitSpecifier([\"year\"], {\"year-month\":\"%b %Y \",\"year-month-date\":\"%b %d, %Y \"}))) + \"; Palladium Produced (kg): \" + (format(datum[\"sum_count\"], \"\")) + \"; Development Status: \" + (isValid(datum[\"developmentStatus\"]) ? datum[\"developmentStatus\"] : \"\"+datum[\"developmentStatus\"])"
+          },
+          "x": {"scale": "x", "field": "year_year"},
+          "y": {"scale": "y", "field": "sum_count"}
+        }
+      }
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "time",
+      "domain": {
+        "fields": [
+          {"data": "source_0", "field": "year_year"},
+          {"data": "data_0", "field": "year_year"}
+        ]
+      },
+      "range": [0, {"signal": "width"}]
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "fields": [
+          {"data": "source_0", "field": "sum_count"},
+          {"data": "data_0", "field": "sum_count"}
+        ]
+      },
+      "range": [{"signal": "height"}, 0],
+      "nice": true,
+      "zero": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {
+        "fields": [
+          {"data": "source_0", "field": "developmentStatus"},
+          {"data": "data_0", "field": "developmentStatus"}
+        ],
+        "sort": true
+      },
+      "range": "category"
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "gridScale": "y",
+      "grid": true,
+      "tickCount": {"signal": "ceil(width/40)"},
+      "domain": false,
+      "labels": false,
+      "aria": false,
+      "maxExtent": 0,
+      "minExtent": 0,
+      "ticks": false,
+      "zindex": 0
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "gridScale": "x",
+      "grid": true,
+      "tickCount": {"signal": "ceil(height/40)"},
+      "domain": false,
+      "labels": false,
+      "aria": false,
+      "maxExtent": 0,
+      "minExtent": 0,
+      "ticks": false,
+      "zindex": 0
+    },
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "grid": false,
+      "title": "Year",
+      "format": {
+        "signal": "timeUnitSpecifier([\"year\"], {\"year-month\":\"%b %Y \",\"year-month-date\":\"%b %d, %Y \"})"
+      },
+      "labelFlush": true,
+      "labelOverlap": true,
+      "tickCount": {"signal": "ceil(width/40)"},
+      "zindex": 0
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "grid": false,
+      "title": "Palladium Produced (kg)",
+      "labelOverlap": true,
+      "tickCount": {"signal": "ceil(height/40)"},
+      "zindex": 0
+    }
+  ],
+  "legends": [
+    {
+      "title": "Development Status",
+      "stroke": "color",
+      "symbolType": "circle",
+      "encode": {
+        "symbols": {
+          "update": {"fill": {"value": "white"}, "opacity": {"value": 1}}
+        }
+      }
+    }
+  ],
+  "config": {}
+}

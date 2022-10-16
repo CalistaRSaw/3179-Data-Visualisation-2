@@ -1,0 +1,25 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Production of Palladium over Time",
+  "width": 400,
+  "height": 250,
+  "data": {
+    "url": "https://raw.githubusercontent.com/CalistaRSaw/3179-Data-Visualisation-2/main/Minerals%20data/palladium%20development%20status.csv"
+  },
+  "mark": {"type": "line", "point": {"filled": false, "fill": "white"}},
+  "encoding": {
+    "x": {"timeUnit": "year", "field": "year", "title": "Year"},
+    "y": {
+      "aggregate": "sum",
+      "field": "count",
+      "type": "quantitative",
+      "title": "Palladium Produced (kg)"
+    },
+    "color": {
+      "field": "developmentStatus",
+      "type": "nominal",
+      "title": "Development Status"
+    }
+  },
+  "config": {}
+}
