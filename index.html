@@ -25,7 +25,7 @@
       <h1>Minerals around the World</h1>
       <div class="pure-g">
           <div class="pure-u-1-1">
-              <h2>World Overview</h2>
+              <h2 style="text-align: center;">World Overview</h2>
               <div id="choropleth_map" class="vis-container"></div>
           </div>
       </div>
@@ -112,6 +112,12 @@
       </div>
       <!-- end pure grid group -->
 
+      <div class="pure-g">
+        <div class="pure-u-1-1">
+            <div id="donut" class="vis-container"></div>
+        </div>
+    </div>
+
     </div>
 
 
@@ -145,6 +151,11 @@
 
       var spec6 = "js/palladiumRank.vl.json";
       vegaEmbed('#palladiumRank', spec6, {"actions": false}).then(function(result) {
+        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+      }).catch(console.error);
+
+      var spec7 = "js/donut.json";
+      vegaEmbed('#donut', spec7, {"actions": false}).then(function(result) {
         // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
       }).catch(console.error);
 

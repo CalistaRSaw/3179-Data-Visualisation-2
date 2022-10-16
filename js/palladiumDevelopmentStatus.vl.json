@@ -19,7 +19,8 @@
     "color": {
       "field": "developmentStatus",
       "type": "nominal",
-      "title": "Development Status"
+      "title": "Development Status",
+      "scale": {"range": ["#a6cee3","#1f78b4","#b2df8a","#33a02c"]}
     }
   },
   "config": {}

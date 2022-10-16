@@ -1,0 +1,101 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "background": "lightgoldenrodyellow",
+    "data": {"url": "https://raw.githubusercontent.com/CalistaRSaw/3179-Data-Visualisation-2/main/Minerals%20data/World%20share.csv"},
+    "hconcat":[
+        {
+            "width": 260,
+            "layer":[
+                {
+                    "mark": {"type": "arc", "innerRadius": 50},
+                    "encoding": {
+                    "theta": {"field": "Goldp", "type": "quantitative"},
+                    "color": {
+                        "field": "Goldc", 
+                        "type": "nominal", 
+                        "title": "Country",
+                        "legend": {"orient": "bottom"},
+                        "scale": {"range": ["#8dd3c7","#ffffb3","#bebada","#fb8072","#80b1d3","#d9d9d9","#b3de69","#fccde5","#fdb462","#bc80bd","#ccebc5"]}
+                    }
+                    }
+                },
+                {
+                    "transform": [
+                        {"calculate": "'Gold'", "as": "text_annotationg"}
+                    ],
+                    "mark": {
+                        "type": "text",
+                        "align": "center",
+                        "dx": 0,
+                        "dy": 0,
+                        "baseline": "middle",
+                        "fontStyle": "normal",
+                        "fontSize": 22,
+                        "fontWeight":"bold"
+                    },
+                    "encoding": {"text": {"field": "text_annotationg"}}
+                }
+            ]
+            
+        },
+        {
+            "width": 260,
+            "layer": [
+                {
+                    "mark": {"type": "arc", "innerRadius": 50},
+                    "encoding": {
+                    "theta": {"field": "Silverp", "type": "quantitative"},
+                    "color": {"field": "Silverc", "type": "nominal", "title": "Country"}
+                    }
+                },
+                {
+                    "transform": [
+                        {"calculate": "'Silver'", "as": "text_annotations"}
+                    ],
+                    "mark": {
+                        "type": "text",
+                        "align": "center",
+                        "dx": 0,
+                        "dy": 0,
+                        "baseline": "middle",
+                        "fontStyle": "normal",
+                        "fontSize": 22,
+                        "fontWeight":"bold"
+                    },
+                    "encoding": {"text": {"field": "text_annotations"}}
+                }
+            ]
+            
+        },
+        {
+            "width": 260,
+            "layer": [
+                {
+                    "mark": {"type": "arc", "innerRadius": 50},
+                    "encoding": {
+                    "theta": {"field": "Platinump", "type": "quantitative"},
+                    "color": {"field": "Platinumc", "type": "nominal", "title": "Country"}
+                    }
+                },
+                {
+                    "transform": [
+                        {"calculate": "'Platinum'", "as": "text_annotationp"}
+                    ],
+                    "mark": {
+                        "type": "text",
+                        "align": "center",
+                        "dx": 0,
+                        "dy": 0,
+                        "baseline": "middle",
+                        "fontStyle": "normal",
+                        "fontSize": 22,
+                        "fontWeight":"bold"
+                    },
+                    "encoding": {"text": {"field": "text_annotationp"}}
+                }
+            ]
+            
+        }
+    ]
+}
+  
