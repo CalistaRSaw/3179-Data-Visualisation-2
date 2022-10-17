@@ -20,8 +20,13 @@
       "field": "developmentStatus",
       "type": "nominal",
       "title": "Development Status",
-      "scale": {"range": ["#a6cee3","#1f78b4","#b2df8a","#33a02c"]}
-    }
+      "scale": {"range": ["#b2df8a","#a6cee3","#1f78b4","#33a02c"]}
+    },
+    "tooltip": [
+      {"field": "developmentStatus", "type": "nominal", "title": "Development Status"},
+      {"field": "year", "type": "temporal", "title": "Year", "format": "%Y"},
+      {"field": "count", "type": "quantitative", "title": "Palladium Produced (kg)", "format": ","}
+    ]
   },
   "config": {}
 }

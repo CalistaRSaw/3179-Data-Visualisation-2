@@ -1,0 +1,63 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Mineral Production of Different Income Class Countries",
+    "background": "lightgoldenrodyellow",
+    "width": 400,
+    "height": 300,
+    "data": {"url": "https://raw.githubusercontent.com/CalistaRSaw/3179-Data-Visualisation-2/Homework_10/Minerals%20data/Raw%20mineral%20by%20country.csv"},
+    "params": [
+        {
+        "name": "mineral_selection",
+        "bind": {
+            "input": "select",
+            "options": [
+                "Chromium",
+                "Chromium",
+                "Iron"
+            ],
+            "labels":[
+                "Default- Chromium",
+                "Chromium",
+                "Iron"
+            ],
+            "name": "Mineral Selection: "
+            }
+        }
+    ],
+    "transform": [
+        {
+            "filter": "datum.Mineral == mineral_selection || datum.Mineral == 'Chromium'"
+        },
+        {
+            "calculate": "datum.annualPerCapitaIncome/1000000",
+            "as": "Mineral Production Mt"
+        }
+        ],
+        
+    "mark": {
+      "type": "line",
+      "point": true
+    },
+    "encoding": {
+      "x": {
+        "timeUnit": "year", 
+        "field": "Year",
+        "title": "Year"},
+      "y": {
+        "aggregate":"sum", 
+        "field": "Mineral Production Mt", 
+        "type": "quantitative",
+        "title": "Mineral Production (M tonne)"
+        },
+      "color": {"field": "Class", "type": "nominal"},
+      "tooltip": [
+        {"field": "Class", "type": "nominal"},
+        {"field": "Year", "type": "temporal", "format": "%Y"},
+        {"field": "Mineral Production Mt", 
+        "aggregate":"sum", 
+        "type": "quantitative", 
+        "title": "Mineral Production (Mt)", "format":","}
+        ]
+    }
+  }
+  

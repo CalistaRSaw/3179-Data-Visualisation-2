@@ -16,7 +16,11 @@
                         "title": "Country",
                         "legend": {"orient": "bottom"},
                         "scale": {"range": ["#8dd3c7","#ffffb3","#bebada","#fb8072","#80b1d3","#d9d9d9","#b3de69","#fccde5","#fdb462","#bc80bd","#ccebc5"]}
-                    }
+                    },
+                    "tooltip": [
+                        {"field": "Goldc", "type": "nominal", "title": "Country"},
+                        {"field": "Goldp", "type": "quantitative", "title": "World share (%)"}
+                    ]
                     }
                 },
                 {
@@ -45,7 +49,11 @@
                     "mark": {"type": "arc", "innerRadius": 50},
                     "encoding": {
                     "theta": {"field": "Silverp", "type": "quantitative"},
-                    "color": {"field": "Silverc", "type": "nominal", "title": "Country"}
+                    "color": {"field": "Silverc", "type": "nominal", "title": "Country"},
+                    "tooltip": [
+                        {"field": "Silverc", "type": "nominal", "title": "Country"},
+                        {"field": "Silverp", "type": "quantitative", "title": "World share (%)"}
+                    ]
                     }
                 },
                 {
@@ -74,7 +82,11 @@
                     "mark": {"type": "arc", "innerRadius": 50},
                     "encoding": {
                     "theta": {"field": "Platinump", "type": "quantitative"},
-                    "color": {"field": "Platinumc", "type": "nominal", "title": "Country"}
+                    "color": {"field": "Platinumc", "type": "nominal", "title": "Country"},
+                    "tooltip": [
+                        {"field": "Platinumc", "type": "nominal", "title": "Country"},
+                        {"field": "Platinump", "type": "quantitative", "title": "World share (%)"}
+                    ]
                     }
                 },
                 {

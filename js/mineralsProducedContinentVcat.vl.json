@@ -24,7 +24,11 @@
           "type": "quantitative",
           "title": "Minerals Produced (Tonnes)"
         },
-        "color": {"value": "#d7d1c5"}
+        "color": {"value": "#d7d1c5"},
+        "tooltip": [
+          {"field": "Continent", "type": "nominal"},
+          {"field": "Count", "type": "quantitative", "title": "Minerals Produced (Tonnes)", "format": ","}
+        ]
       }
     },
     {
@@ -43,7 +47,11 @@
           "type": "quantitative",
           "title": "Minerals Produced (Tonnes/ square km)"
         },
-        "color": {"value": "#d7d1c5"}
+        "color": {"value": "#d7d1c5"},
+        "tooltip": [
+          {"field": "Continent", "type": "nominal"},
+          {"field": "Count", "type": "quantitative", "title": "Minerals Produced (Tonnes/Area)", "format": ","}
+        ]
       }
     }
   ],

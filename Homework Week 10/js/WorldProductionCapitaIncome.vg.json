@@ -86,8 +86,8 @@
       "name": "Mineral_selection",
       "bind": {
         "input": "select",
-        "options": [null, "Chromium", "Iron"],
-        "labels": ["None: Select a Mineral", "Chromium", "Iron"],
+        "options": ["Chromium", "Iron"],
+        "labels": ["Chromium", "Iron"],
         "name": "Mineral Selection: "
       }
     }
