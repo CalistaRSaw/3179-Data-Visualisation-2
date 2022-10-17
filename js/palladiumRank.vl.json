@@ -3,7 +3,7 @@
   "title": {"text": "Palladium Production Ranking"},
   "width": 450,
   "height": 300,
-  "background": "lightgoldenrodyellow",
+  "background": "#fbfbdf",
   "data": {
     "url": "https://raw.githubusercontent.com/CalistaRSaw/3179-Data-Visualisation-2/main/Minerals%20data/palladium%20rank%20reformatted.csv"
   },

@@ -3,13 +3,22 @@
   "title": "Production of Palladium over Time",
   "width": 350,
   "height": 250,
-  "background": "lightgoldenrodyellow",
+  "background": "#fbfbdf",
   "data": {
     "url": "https://raw.githubusercontent.com/CalistaRSaw/3179-Data-Visualisation-2/main/Minerals%20data/palladium%20development%20status.csv"
   },
   "mark": {"type": "line", "point": {"filled": false, "fill": "white"}},
   "encoding": {
-    "x": {"timeUnit": "year", "field": "year", "title": "Year"},
+    "x": {
+      "timeUnit": "year", "field": "year", "title": "Year",
+      "axis": {
+        "labelAngle": 0,
+        "labelFontSize": 12,
+        "tickMinStep": 1,
+        "tickCount": 5,
+        "titleFontSize": 12
+      }
+    },
     "y": {
       "aggregate": "sum",
       "field": "count",

@@ -3,7 +3,7 @@
   "data": {
     "url": "https://raw.githubusercontent.com/CalistaRSaw/3179-Data-Visualisation-2/main/Minerals%20data/World%20production%20by%20continent%20in%202020%20bar.csv"
   },
-  "background": "lightgoldenrodyellow",
+  "background": "#fbfbdf",
   "transform": [
     {"calculate": "datum.Count/datum.Area", "as": "normalisedCount"}
   ],

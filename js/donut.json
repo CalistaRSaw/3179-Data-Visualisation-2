@@ -1,6 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "background": "lightgoldenrodyellow",
+    "background": "#fbfbdf",
     "data": {"url": "https://raw.githubusercontent.com/CalistaRSaw/3179-Data-Visualisation-2/main/Minerals%20data/World%20share.csv"},
     "hconcat":[
         {
