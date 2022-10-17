@@ -5,34 +5,56 @@
     "height": 300,
     "title": {"text": "Top 5 Minerals Produced in Australia", "frame": "group"},
     "data": {"url": "https://raw.githubusercontent.com/CalistaRSaw/3179-Data-Visualisation-2/main/Minerals%20data/Australia%20yearly%20count.csv"},
-    "mark": "area",
-    "encoding": {
-      "x": {
-        "timeUnit": "yearmonth", "field": "Year",
-        "title": "Year",
-        "axis": {
-            "labelAngle": 0,
-            "labelFontSize": 12,
-            "tickMinStep": 1,
-            "tickCount": 5,
-            "titleFontSize": 12,
-            "format": "%Y"
-          }
+    "layer":[
+      {
+        "mark": "area",
+        "encoding": {
+          "x": {
+            "timeUnit": "yearmonth", "field": "Year",
+            "title": "Year",
+            "axis": {
+                "labelAngle": 0,
+                "labelFontSize": 12,
+                "tickMinStep": 1,
+                "tickCount": 5,
+                "titleFontSize": 12,
+                "format": "%Y"
+              }
+          },
+          "y": {
+            "aggregate": "sum", "field": "Count",
+            "title": "Minerals Produced (Tonnes)"
+          },
+          "color": {
+            "field": "Mineral",
+            "type": "nominal",
+            "scale": {"range": ["#7fc97f","#beaed4","#fdc086", "#873e23", "#386cb0"]},
+            "legend": null
+          },
+          "tooltip":[
+            {"field": "Mineral", "type": "nominal"},
+            {"field": "Year", "type": "temporal", "format": "%Y"},
+            {"field": "Count", "type": "quantitative","format":",", "title": "Minerals Produced (Tonnes)"}
+          ]
+        }
       },
-      "y": {
-        "aggregate": "sum", "field": "Count",
-        "title": "Minerals Produced (Tonnes)"
-      },
-      "color": {
-        "field": "Mineral",
-        "type": "nominal",
-        "scale": {"range": ["#7fc97f","#beaed4","#fdc086", "#873e23", "#386cb0"]},
-        "legend": null
-      },
-      "tooltip":[
-        {"field": "Mineral", "type": "nominal"},
-        {"field": "Year", "type": "temporal", "format": "%Y"},
-        {"field": "Count", "type": "quantitative","format":",", "title": "Minerals Produced (Tonnes)"}
-      ]
-    }
+      {
+          "transform": [
+              {"calculate": "'Iron is shown to be the highest producing mineral in Australia'", "as": "text_annotation"}
+          ],
+          "mark": {
+              "type": "text",
+              "align": "center",
+              "dx": 0,
+              "dy": 0,
+              "baseline": "middle",
+              "fontStyle": "normal",
+              "fontSize": 15,
+              "font": "Open Sans",
+              "fontWeight":"lighter"
+          },
+          "encoding": {"text": {"field": "text_annotation"}}
+      }
+    ]
+    
   }

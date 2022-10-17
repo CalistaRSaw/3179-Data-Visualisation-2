@@ -5,7 +5,11 @@
   },
   "background": "#fbfbdf",
   "transform": [
-    {"calculate": "datum.Count/datum.Area", "as": "normalisedCount"}
+    {"calculate": "datum.Count/datum.Area", "as": "normalisedCount"},
+    {
+        "calculate": "datum.Count/1000000",
+        "as": "Mineral Production Mt"
+    }
   ],
   "vconcat": [
     {
@@ -20,9 +24,9 @@
           "axis": {"labelAngle": 0}
         },
         "x": {
-          "field": "Count",
+          "field": "Mineral Production Mt",
           "type": "quantitative",
-          "title": "Minerals Produced (Tonnes)"
+          "title": "Minerals Produced (M Tonnes)"
         },
         "color": {"value": "#d7d1c5"},
         "tooltip": [

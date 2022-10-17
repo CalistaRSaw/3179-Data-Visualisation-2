@@ -46,6 +46,17 @@
             "width": 260,
             "layer": [
                 {
+                    "params": [{
+                      "name": "hover",
+                      "select": {
+                        "type": "point",
+                        "fields": ["Country"],
+                        "on": "mouseover"
+                      }
+                    }],
+                    "mark": {"type": "arc", "innerRadius": 50, "stroke": "transparent"}
+                  },
+                {
                     "mark": {"type": "arc", "innerRadius": 50},
                     "encoding": {
                     "theta": {"field": "Silverp", "type": "quantitative"},
