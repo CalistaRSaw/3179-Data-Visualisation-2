@@ -64,7 +64,7 @@
         {"field": "Mineral Production Mt", 
         "aggregate":"sum", 
         "type": "quantitative", 
-        "title": "Mineral Production (Mt)", "format":","}
+        "title": "Mineral Production (Mt)", "format":".2f"}
         ]
     }
   }
